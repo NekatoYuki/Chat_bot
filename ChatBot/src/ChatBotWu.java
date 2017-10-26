@@ -2,10 +2,10 @@ import java.util.Random;
 
 /* This version:
  * @author Mr. Levin - Reference Code 
- 		   Evan Wu - Modified Code
+ 		    - Modified Code
  * @version October 2017
  */
-public class ChatBotLevin
+public class ChatBotWu
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
