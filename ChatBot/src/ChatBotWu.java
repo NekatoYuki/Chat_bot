@@ -1,8 +1,6 @@
-import java.util.Random;
-
 /* This version:
  * @author Mr. Levin - Reference Code 
- 		    - Modified Code
+ 		   Evan Wu - Modified Code
  * @version October 2017
  */
 public class ChatBotWu
@@ -16,7 +14,7 @@ public class ChatBotWu
 	public String getGreeting()
 	{
 		System.out.println("Drug abuse chat");
-		return "Hello, how can I help you?";
+		return "Hello, what's on your mind?";
 	}
 	
 	/**
@@ -41,14 +39,45 @@ public class ChatBotWu
                 	emotion--;
 		}
 		
+
+		else if (findKeyword(statement, "friend") >= 0)
+		{
+			response = "So did your friend introduce you to drugs?";
+                	emotion++;
+		}
+		
+
+		else if (findKeyword(statement, "hotline") >= 0)
+		{
+			response = "Do you want a hotline?";
+			String answer1 = "";
+			if (findKeyword(response, "yes") >= 0)
+			{
+				answer1 = "A helpful hotline would be 1-800-662-HELP, which is operated by the Substance Abuse and Mental Health Services Administration";
+	                	emotion++;
+			}
+	         else if (findKeyword(response, "no") >= 0)
+	            		{
+	          answer1 = "Okay, but I strongly recommend that you do.";
+	                  emotion--;
+	            		}
+			
+			return answer1;   
+		}
+		
+		
 		else if (findKeyword(statement, "drugs") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
 				|| findKeyword(statement, "cocaine") >=0 
+				|| findKeyword(statement, "crack") >=0 
+				|| findKeyword(statement, "vape") >=0 
 				|| findKeyword(statement, "weed") >=0 
+				|| findKeyword(statement, "vaping") >=0 
 				|| findKeyword(statement, "smoking") >=0)
 		{
-			response = "Hmmmm... it seems like you have a problem, but that's what I'm here for!";
+			response = "How long have you been using the drug?";
 			emotion++;
+	
 		}
 		
 
@@ -69,6 +98,7 @@ public class ChatBotWu
 		
 		return response;
 	}
+	
 	
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
