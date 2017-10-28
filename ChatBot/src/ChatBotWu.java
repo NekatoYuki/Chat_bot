@@ -116,14 +116,7 @@ public class ChatBotWu
 	                  emotion++;
 	    }
 		
-		 
-		
-		else if (findKeyword(statement, "quiz") >= 0)
-		{
-			
-			
-	                  emotion++;
-	    }
+
 		
 		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
