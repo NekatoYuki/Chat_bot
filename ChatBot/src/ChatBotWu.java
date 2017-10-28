@@ -157,15 +157,6 @@ public class ChatBotWu
 		return response;
 	}
 	
-	
-	
-	
-
-
-	public void getQuiz() {
-		System.out.println("DRUG ABUSE CHAT");
-	}
-	
 
 	private String transformIWantToStatement(String statement)
 	{
