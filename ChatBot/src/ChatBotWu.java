@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.Scanner;
+
 /* This version:
  * @author Mr. Levin - Reference Code 
  		   Evan Wu - Modified Code
@@ -7,23 +10,18 @@ public class ChatBotWu
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-	/**
-	 * Get a default greeting 	
-	 * @return a greeting
-	 */	
+	
+	
 	public String getGreeting()
 	{
-		System.out.println("Drug abuse chat");
-		return "Hello, what's on your mind?";
+		System.out.println("DRUG ABUSE CHAT");
+		return "Welcome to the Drug abuse chat! You can tell me what you want, or I can listen to you or give you facts/advice.";
 	}
+	Scanner input = new Scanner(System.in);
 	
-	/**
-	 * Gives a response to a user statement
-	 * 
-	 * @param statement
-	 *            the user statement
-	 * @return a response based on the rules given
-	 */
+
+
+	@SuppressWarnings("resource")
 	public String getResponse(String statement)
 	{
 		String response = "";
@@ -39,34 +37,49 @@ public class ChatBotWu
                 	emotion--;
 		}
 		
+		if (findKeyword(statement, "yes") >= 0)
+		{
+			response = "Tell me more, I'm listening";
+				
+		}
+		
 
 		else if (findKeyword(statement, "friend") >= 0)
 		{
 			response = "So did your friend introduce you to drugs?";
+                	emotion--;
+		}
+		
+		else if (findKeyword(statement, "help") >= 0)
+		{
+			response = "That's what I'm here for! Ask away!";
+		}
+		
+	
+		else if (findKeyword(statement, "advice") >= 0 )
+		{
+			response = getRandomAdvice();
                 	emotion++;
 		}
 		
 
-		else if (findKeyword(statement, "hotline") >= 0)
+		else if (findKeyword(statement, "fact") >= 0)
 		{
-			response = "Do you want a hotline?";
-			String answer1 = "";
-			if (findKeyword(response, "yes") >= 0)
-			{
-				answer1 = "A helpful hotline would be 1-800-662-HELP, which is operated by the Substance Abuse and Mental Health Services Administration";
-	                	emotion++;
-			}
-	         else if (findKeyword(response, "no") >= 0)
-	            		{
-	          answer1 = "Okay, but I strongly recommend that you do.";
-	                  emotion--;
-	            		}
+			response = "Heres a fact:" + " " + getRandomFact();
 			
-			return answer1;   
-		}
+	                  emotion++;
+	    }
 		
+		 
 		
-		else if (findKeyword(statement, "drugs") >=0 
+		else if (findKeyword(statement, "quiz") >= 0)
+		{
+			
+			
+	                  emotion++;
+	    }
+		
+		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
 				|| findKeyword(statement, "cocaine") >=0 
 				|| findKeyword(statement, "crack") >=0 
@@ -75,11 +88,17 @@ public class ChatBotWu
 				|| findKeyword(statement, "vaping") >=0 
 				|| findKeyword(statement, "smoking") >=0)
 		{
-			response = "How long have you been using the drug?";
+			response = "Tell me more about it.";
 			emotion++;
-	
 		}
 		
+		else if (findKeyword(statement, "Bye") >= 0)
+		{
+			System.out.println("Bye!");
+			ChatBotRunner chatbot1 = new ChatBotRunner();
+			String[] args = new String[0] ;
+		    chatbot1.main(args);
+		}
 
 
 		// Response transforming I want to statement
@@ -100,12 +119,15 @@ public class ChatBotWu
 	}
 	
 	
-	/**
-	 * Take a statement with "I want to <something>." and transform it into 
-	 * "Why do you want to <something>?"
-	 * @param statement the user statement, assumed to contain "I want to"
-	 * @return the transformed statement
-	 */
+	
+	
+
+
+	public void getQuiz() {
+		System.out.println("DRUG ABUSE CHAT");
+	}
+	
+
 	private String transformIWantToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -123,12 +145,7 @@ public class ChatBotWu
 	}
 
 	
-	/**
-	 * Take a statement with "I want <something>." and transform it into 
-	 * "Would you really be happy if you had <something>?"
-	 * @param statement the user statement, assumed to contain "I want"
-	 * @return the transformed statement
-	 */
+	
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -146,12 +163,8 @@ public class ChatBotWu
 	}
 	
 	
-	/**
-	 * Take a statement with "I <something> you" and transform it into 
-	 * "Why do you <something> me?"
-	 * @param statement the user statement, assumed to contain "I" followed by "you"
-	 * @return the transformed statement
-	 */
+	
+	@SuppressWarnings("unused")
 	private String transformIYouStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -174,22 +187,7 @@ public class ChatBotWu
 
 	
 	
-	/**
-	 * Search for one word in phrase. The search is not case
-	 * sensitive. This method will check that the given goal
-	 * is not a substring of a longer string (so, for
-	 * example, "I know" does not contain "no").
-	 *
-	 * @param statement
-	 *            the string to search
-	 * @param goal
-	 *            the string to search for
-	 * @param startPos
-	 *            the character of the string to begin the
-	 *            search at
-	 * @return the index of the first occurrence of goal in
-	 *         statement or -1 if it's not found
-	 */
+
 	private int findKeyword(String statement, String goal,
 			int startPos)
 	{
@@ -238,25 +236,29 @@ public class ChatBotWu
 		return -1;
 	}
 	
-	/**
-	 * Search for one word in phrase.  The search is not case sensitive.
-	 * This method will check that the given goal is not a substring of a longer string
-	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.  
-	 * @param statement the string to search
-	 * @param goal the string to search for
-	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
-	 */
+	
 	private int findKeyword(String statement, String goal)
 	{
 		return findKeyword (statement, goal, 0);
 	}
 	
+	private String getRandomFact()
+	{
+		Random r = new Random ();
+		{	
+			return randomFact [r.nextInt(randomFact.length)];
+		}
+	}
+
+	private String getRandomAdvice()
+	{
+		Random r = new Random ();
+		{	
+			return randomAdvice [r.nextInt(randomAdvice.length)];
+		}
+	}
 
 
-	/**
-	 * Pick a default response to use if nothing else fits.
-	 * @return a non-committal string
-	 */
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
@@ -279,7 +281,20 @@ public class ChatBotWu
 			"Go on...",
 			"Can you repeat that again?"
 	};
-	private String [] randomAngryResponses = {"...", "Hmph"};
-	private String [] randomHappyResponses = {"Great!", "Fantasic!", "ok!"};
+	private String [] randomAngryResponses = {"...", "Hmph", ">:(", ":("};
+	private String [] randomHappyResponses = {"Great!", "Fantastic!", "ok!", "Nice!", ":D", ":)"};
+	private String [] randomFact = {"A hotline that you can call is 1-800-662-HELP.", 
+			"Drugs abuse caused over 307,400 deaths in 2015. You don't want to be one of them!", 
+			"Drug abuse can change your brain chemistry :O",
+			"Over $190 billion goes towards drug abuse. Imagine what we can do with all that money!",
+			"Over 20 million Americans suffer from some form of drug addiction, with a large number of them suffering from drug abuse."};
+	private String [] randomAdvice = {"Remind yourself of the reasons you want to change.", 
+									"Find a hobby!",
+									"Find something that you like to do.",
+									"Go to a rehab facility, where you can meet others with similar struggles.",
+									"Ask for the support of family or friends in your recovery from drugs. ", 
+									"Don't hang with friends who use drugs."};
+
+	}
+
 	
-}
