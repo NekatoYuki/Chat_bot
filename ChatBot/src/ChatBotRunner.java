@@ -21,13 +21,13 @@ public class ChatBotRunner
 		ChatBotWu chatbot4 = new ChatBotWu();
 		
 		
-		System.out.println("Drug abuse/prevention chat");
+		System.out.println("Drug awaresness chat");
 		System.out.println("\n");
-		System.out.println("Welcome to the drug abuse prevention chat. Please select a topic.");
+		System.out.println("Welcome to the drug awareness prevention chat. Please select a topic.");
 		System.out.println("1. ");
 		System.out.println("2. ");
 		System.out.println("3. ");
-		System.out.println("4. Drug abuse");
+		System.out.println("4.Drug abuse");
 		System.out.println("Note : when selecting a choice please enter the choice number ONLY.");
 		Scanner input = new Scanner(System.in);
 		String choose = input.nextLine();
