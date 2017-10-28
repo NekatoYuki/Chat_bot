@@ -15,7 +15,7 @@ public class ChatBotWu
 	public String getGreeting()
 	{
 		System.out.println("DRUG ABUSE CHAT");
-		return "Welcome to the Drug abuse chat! You can tell me what you want, or I can listen to you or give you facts/advice.";
+		return "Welcome to the Drug abuse chat! You can tell me what you want, or I can listen to you, take a short quiz to test your knowledge, or give you facts/advice.";
 	}
 	Scanner input = new Scanner(System.in);
 	
@@ -49,6 +49,52 @@ public class ChatBotWu
 			response = "So did your friend introduce you to drugs?";
                 	emotion--;
 		}
+		
+		
+		//quiz
+		else if (findKeyword(statement, "question") >= 0||
+				findKeyword(statement, "test") >= 0 ||
+				findKeyword(statement, "knowledge") >= 0 ||
+				findKeyword(statement, "quiz") >= 0)
+		{
+			response = "Do you want to test your knowledge? Respond with quizyes or quizno";
+                	emotion++;
+		}
+		else if (findKeyword(statement, "quizyes") >= 0)
+		{
+			response = "Are you ready? Respond with ready or notready.";
+                	emotion++;
+		}
+		else if (findKeyword(statement, "ready") >= 0)
+		{
+			response = "True or false?" + " " + getRandomQuestion();
+		}
+		else if (findKeyword(statement, "true") >= 0)
+		{
+			response = trueResponses() + " " + "Ready for another question? Or do you want to keep your 100% correct rate? Respond with ready or exit";
+		}
+		
+		else if (findKeyword(statement, "false") >= 0)
+		{
+			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit";
+		}
+		
+		else if (findKeyword(statement, "notready") >= 0)
+		{
+			response = "Hurry up! I'm waiting for you.";
+                	emotion++;
+		}
+		
+		else if (findKeyword(statement, "quizno") >= 0
+				|| findKeyword(statement, "exit") >= 0)
+		{
+			response = "ok :(";
+                	emotion--;
+		}
+		
+		
+		
+		
 		
 		else if (findKeyword(statement, "help") >= 0)
 		{
@@ -257,6 +303,31 @@ public class ChatBotWu
 			return randomAdvice [r.nextInt(randomAdvice.length)];
 		}
 	}
+	
+	private String getRandomQuestion()
+	{
+		Random r = new Random ();
+		{	
+			return randomQuestion [r.nextInt(randomQuestion.length)];
+		}
+	}
+	
+	private String falseResponses()
+	{
+		Random r = new Random ();
+		{	
+			return falseResponses [r.nextInt(falseResponses.length)];
+		}
+	}
+
+	private String trueResponses()
+	{
+		Random r = new Random ();
+		{	
+			return trueResponses [r.nextInt(trueResponses.length)];
+		}
+	}
+
 
 
 	private String getRandomResponse ()
@@ -294,7 +365,7 @@ public class ChatBotWu
 									"Go to a rehab facility, where you can meet others with similar struggles.",
 									"Ask for the support of family or friends in your recovery from drugs. ", 
 									"Don't hang with friends who use drugs."};
-
+	private String [] randomQuestion = {"27 million Americans abuse drugs.", "Drug abuse cause over 300,000 deaths each year."};
+	private String [] falseResponses = {"D'oh!", "Stumped?", "Ouch.", "False :("};
+	private String [] trueResponses = {"Correct!", "Wow!", "Excellent!"};
 	}
-
-	
