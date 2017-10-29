@@ -14,14 +14,16 @@ public class ChatBotWu
 	
 	public String getGreeting()
 	{
+		//info and intro section of the chatbot
+		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
+		System.out.println("Enter bye to return to menu.");
 		return "Welcome to the Drug abuse chat! You can tell me what you want, or I can listen to you, take a short quiz to test your knowledge, or give you facts/advice.";
 	}
+	//input method
 	Scanner input = new Scanner(System.in);
 	
-
-
-	@SuppressWarnings("resource")
+	//responses
 	public String getResponse(String statement)
 	{
 		String response = "";
@@ -57,12 +59,12 @@ public class ChatBotWu
 				findKeyword(statement, "knowledge") >= 0 ||
 				findKeyword(statement, "quiz") >= 0)
 		{
-			response = "Do you want to test your knowledge? Respond with quizyes or quizno";
+			response = "Do you want to test your knowledge? Respond with quizYes or quizNo.";
                 	emotion++;
 		}
 		else if (findKeyword(statement, "quizyes") >= 0)
 		{
-			response = "Are you ready? Respond with ready or notready.";
+			response = "Are you ready? Respond with ready or notReady.";
                 	emotion++;
 		}
 		else if (findKeyword(statement, "ready") >= 0)
@@ -71,12 +73,12 @@ public class ChatBotWu
 		}
 		else if (findKeyword(statement, "true") >= 0)
 		{
-			response = trueResponses() + " " + "Ready for another question? Or do you want to keep your 100% correct rate? Respond with ready or exit";
+			response = trueResponses() + " " + "Ready for another question? Respond with ready or exit.";
 		}
 		
 		else if (findKeyword(statement, "false") >= 0)
 		{
-			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit";
+			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit.";
 		}
 		
 		else if (findKeyword(statement, "notready") >= 0)
@@ -98,7 +100,7 @@ public class ChatBotWu
 		
 		else if (findKeyword(statement, "help") >= 0)
 		{
-			response = "That's what I'm here for! Ask away!";
+			response = "Hmmm. Do you need any advice, if not tell me more...";
 		}
 		
 	
@@ -109,15 +111,16 @@ public class ChatBotWu
 		}
 		
 
-		else if (findKeyword(statement, "fact") >= 0)
+		else if (findKeyword(statement, "fact") >= 0||
+		(findKeyword(statement, "facts") >= 0))
 		{
 			response = "Heres a fact:" + " " + getRandomFact();
 			
 	                  emotion++;
 	    }
 		
+		 
 
-		
 		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
 				|| findKeyword(statement, "cocaine") >=0 
@@ -134,9 +137,10 @@ public class ChatBotWu
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Bye!");
+			@SuppressWarnings("unused")
 			ChatBotRunner chatbot1 = new ChatBotRunner();
 			String[] args = new String[0] ;
-		    chatbot1.main(args);
+		    ChatBotRunner.main(args);
 		}
 
 
@@ -157,6 +161,10 @@ public class ChatBotWu
 		return response;
 	}
 	
+	
+	
+
+	 
 
 	private String transformIWantToStatement(String statement)
 	{
@@ -266,12 +274,13 @@ public class ChatBotWu
 		return -1;
 	}
 	
-	
+	//Methods used to get a random response 
+	//Finds a keyword
 	private int findKeyword(String statement, String goal)
 	{
 		return findKeyword (statement, goal, 0);
 	}
-	
+	//Gets a random fact from array
 	private String getRandomFact()
 	{
 		Random r = new Random ();
@@ -279,7 +288,7 @@ public class ChatBotWu
 			return randomFact [r.nextInt(randomFact.length)];
 		}
 	}
-
+	//Gets random advice from array
 	private String getRandomAdvice()
 	{
 		Random r = new Random ();
@@ -287,7 +296,7 @@ public class ChatBotWu
 			return randomAdvice [r.nextInt(randomAdvice.length)];
 		}
 	}
-	
+	//Gets a random question for the quiz
 	private String getRandomQuestion()
 	{
 		Random r = new Random ();
@@ -295,7 +304,7 @@ public class ChatBotWu
 			return randomQuestion [r.nextInt(randomQuestion.length)];
 		}
 	}
-	
+	//Gets an expression for when the user gets the question wrong
 	private String falseResponses()
 	{
 		Random r = new Random ();
@@ -303,7 +312,7 @@ public class ChatBotWu
 			return falseResponses [r.nextInt(falseResponses.length)];
 		}
 	}
-
+	//Gets an expression for when the user gets the question correct
 	private String trueResponses()
 	{
 		Random r = new Random ();
@@ -312,8 +321,7 @@ public class ChatBotWu
 		}
 	}
 
-
-
+	//Gets a random response when nothing fits
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
@@ -328,14 +336,17 @@ public class ChatBotWu
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
 	
+	//Array values/strings for random responses
 	private String [] randomNeutralResponses = {"Tell me more...",
 			"Hmmm.",
 			"Do you really think so?",
 			"You don't say.",
 			"I'm listening.",
 			"Go on...",
-			"Can you repeat that again?"
+			"Can you repeat that again?",
+			 "Do you need advice? Respond with 'advice'.",
 	};
+	
 	private String [] randomAngryResponses = {"...", "Hmph", ">:(", ":("};
 	private String [] randomHappyResponses = {"Great!", "Fantastic!", "ok!", "Nice!", ":D", ":)"};
 	private String [] randomFact = {"A hotline that you can call is 1-800-662-HELP.", 
@@ -347,9 +358,15 @@ public class ChatBotWu
 									"Find a hobby!",
 									"Find something that you like to do.",
 									"Go to a rehab facility, where you can meet others with similar struggles.",
-									"Ask for the support of family or friends in your recovery from drugs. ", 
-									"Don't hang with friends who use drugs."};
-	private String [] randomQuestion = {"27 million Americans abuse drugs.", "Drug abuse cause over 300,000 deaths each year."};
+									"Ask for the support of family or friends in your recovery from drugs.", 
+									"Don't hang with friends who use drugs."
+										};
+	private String [] randomQuestion = {"27 million Americans abuse drugs.", 
+			"Drug abuse cause over 300,000 deaths each year.", 
+			"Drug abuse can change your brain chemistry.",
+			"Tobacco is the most abused drug."};
 	private String [] falseResponses = {"D'oh!", "Stumped?", "Ouch.", "False :("};
 	private String [] trueResponses = {"Correct!", "Wow!", "Excellent!"};
 	}
+	
+	
