@@ -20,18 +20,18 @@ public class ChatBotRunner
 		ChatBotLiang chatbot3 = new ChatBotLiang();
 		ChatBotWu chatbot4 = new ChatBotWu();
 		
-		
-		System.out.println("Drug awaresness chat");
 		System.out.println("\n");
-		System.out.println("Welcome to the drug awareness prevention chat. Please select a topic.");
+		System.out.println("Drug awareness chat");
+		System.out.println("\n");
+		System.out.println("Welcome to the drug awareness chat. Please select a topic.");
 		System.out.println("1. ");
 		System.out.println("2. ");
 		System.out.println("3. ");
 		System.out.println("4.Drug abuse");
-		System.out.println("Note : when selecting a choice please enter the choice number ONLY.");
+		System.out.println("***NOTE: when selecting a choice please enter the choice number ONLY.***");
 		Scanner input = new Scanner(System.in);
 		String choose = input.nextLine();
-		
+	
 
 	if (choose.equals("1")) {
 	System.out.println (chatbot1.getGreeting());
