@@ -24,9 +24,9 @@ public class ChatBotRunner
 		System.out.println("Drug awareness chat");
 		System.out.println("\n");
 		System.out.println("Welcome to the drug awareness chat. Please select a topic.");
-		System.out.println("1. ");
-		System.out.println("2. ");
-		System.out.println("3. ");
+		System.out.println("1.Drug abuse/addiction support");
+		System.out.println("2.Drug information");
+		System.out.println("3.Drug awareness");
 		System.out.println("4.Drug abuse");
 		System.out.println("***NOTE: when selecting a choice please enter the choice number ONLY.***");
 		Scanner input = new Scanner(System.in);
