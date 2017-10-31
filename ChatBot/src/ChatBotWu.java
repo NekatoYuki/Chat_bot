@@ -158,15 +158,7 @@ public class ChatBotWu
 		}
 		
 		
-		//I you statement
-		int psnOfI = findKeyword (statement, "I", 0);
-		if (findKeyword(statement, "I", 0) >= 0
-				&& findKeyword(statement, "you", psnOfI) >= 0)
-		{
-			response = transformIYouStatement(statement);
-		}
-		
-		
+	
 		//if nothing fits this methods generates random responses
 		else
 		{
@@ -239,30 +231,6 @@ public class ChatBotWu
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
-	
-	
-	
-	private String transformIYouStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		
-		int psnOfI = findKeyword (statement, "I", 0);
-		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
-		return "Why do you " + restOfStatement + " me?";
-	}
-	
-
-	
 	
 	//finds keyword in the user input
 	private int findKeyword(String statement, String goal,
