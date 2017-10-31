@@ -33,7 +33,11 @@ public class ChatBotKim
 				response = "Please indicate who is in need of support.";
 			}
 		}
-		else if (findKeyword(statement, "friend")>=0 || findKeyword(statement, "father")>=0) || findKeyword(statement, "mother")>=0 || findKeyword(statement, "cousin")>=0 || findKeyword(statement, "uncle")>=0)
+		else if (findKeyword(statement, "friend")>=0 || findKeyword(statement, "father")>=0)
+		{
+			response = "I see. May I ask for the person's name please?";
+		}
+		else if (findKeyword(statement, "mother")>=0 || findKeyword(statement, "cousin")>=0 || findKeyword(statement, "uncle")>=0)
 		{
 			response = "I see. May I ask for the person's name please?";
 		}
