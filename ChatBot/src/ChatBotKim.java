@@ -41,5 +41,13 @@ public class ChatBotKim
 		{
 			response = "I see. May I ask for your name please?";
 		}
+		else if (findKeyword(statement, "Bye") >= 0)
+		{
+			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
+			@SuppressWarnings("unused")
+			ChatBotRunner chatbot1 = new ChatBotRunner();
+			String[] args = new String[0] ;
+		    ChatBotRunner.main(args);
+		}
 	}
 }
