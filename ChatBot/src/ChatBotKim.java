@@ -50,4 +50,45 @@ public class ChatBotKim
 		    ChatBotRunner.main(args);
 		}
 	}
+	private String getRandomResponse ()
+	{
+		Random r = new Random ();
+		if (emotion == 0)
+		{	
+			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
+		}
+		if (emotion < 0)
+		{	
+			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
+		}	
+		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
+	}
+	private String [] randomNeutralResponses =
+		{
+			"I see... continue.",
+			"Ok. What else?",
+			"I'm sorry. Can you repeat that again?",
+			"What other information do you have?",
+		};
+	private String [] randomAngryResponses =
+		{
+			">:c",
+			"",
+			"",
+		};
+	private String [] randomHappyResponses =
+		{
+			"",
+			"",
+			"",
+		};
+	private String [] randomSuggestions =
+		{
+			"How about a short game to lighten the mood? :3",
+			"Let's talk about something else besides drugs. Name a sport that you like. ^-^",
+			"You like jazz?",
+			"You play any video games?"
+		};
+	
+	}
 }
