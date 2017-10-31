@@ -4,6 +4,7 @@ import java.util.Scanner;
 /* This version:
  * @author Mr. Levin - Reference Code 
  		   Evan Wu - Modified Code
+ 		   Chatbot Project
  * @version October 2017
  */
 public class ChatBotWu
@@ -23,7 +24,7 @@ public class ChatBotWu
 	//input method
 	Scanner input = new Scanner(System.in);
 	
-	//responses
+	//chatbot responses for certain keywords
 	public String getResponse(String statement)
 	{
 		String response = "";
@@ -45,7 +46,6 @@ public class ChatBotWu
 				
 		}
 		
-
 		else if (findKeyword(statement, "friend") >= 0)
 		{
 			response = "So did your friend introduce you to drugs?";
@@ -62,31 +62,34 @@ public class ChatBotWu
 			response = "Do you want to test your knowledge? Respond with quizYes or quizNo.";
                 	emotion++;
 		}
+		//user select yes
 		else if (findKeyword(statement, "quizyes") >= 0)
 		{
 			response = "Are you ready? Respond with ready or notReady.";
                 	emotion++;
 		}
+		//user ready 
 		else if (findKeyword(statement, "ready") >= 0)
 		{
 			response = "True or false?" + " " + getRandomQuestion();
 		}
+		//chatbot's true responses
 		else if (findKeyword(statement, "true") >= 0)
 		{
 			response = trueResponses() + " " + "Ready for another question? Respond with ready or exit.";
 		}
-		
+		//chatbot's false responses
 		else if (findKeyword(statement, "false") >= 0)
 		{
 			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit.";
 		}
-		
+		//user responds with not ready for quiz
 		else if (findKeyword(statement, "notready") >= 0)
 		{
 			response = "Hurry up! I'm waiting for you.";
                 	emotion++;
 		}
-		
+		//exits quiz
 		else if (findKeyword(statement, "quizno") >= 0
 				|| findKeyword(statement, "exit") >= 0)
 		{
@@ -95,15 +98,7 @@ public class ChatBotWu
 		}
 		
 		
-		
-		
-		
-		else if (findKeyword(statement, "help") >= 0)
-		{
-			response = "Hmmm. Do you need any advice, if not tell me more...";
-		}
-		
-	
+		//more chatbot responses 
 		else if (findKeyword(statement, "advice") >= 0 )
 		{
 			response = getRandomAdvice();
@@ -119,8 +114,7 @@ public class ChatBotWu
 	                  emotion++;
 	    }
 		
-		 
-
+	
 		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
 				|| findKeyword(statement, "cocaine") >=0 
@@ -131,9 +125,9 @@ public class ChatBotWu
 				|| findKeyword(statement, "smoking") >=0)
 		{
 			response = "Tell me more about it.";
-			emotion++;
 		}
 		
+		//used for if user enters bye which returns them back to menu screen
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Bye!");
@@ -144,8 +138,8 @@ public class ChatBotWu
 		}
 
 
-		// Response transforming I want to statement
-		else if (findKeyword(statement, "I need help with", 0) >= 0)
+		// Response transforming I want to style statements
+		else if (findKeyword(statement, "I need to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
@@ -153,18 +147,66 @@ public class ChatBotWu
 		{
 			response = transformIWantStatement(statement);
 		}	
+		
+		else if (findKeyword(statement, "I need help with", 0) >= 0)
+		{
+			response = transformHelp(statement);
+		}
+		else if (findKeyword(statement, "Can you help with", 0) >= 0)
+		{ 
+			response = transformHelp2(statement);
+		}
+		
+		
+		//I you statement
+		int psnOfI = findKeyword (statement, "I", 0);
+		if (findKeyword(statement, "I", 0) >= 0
+				&& findKeyword(statement, "you", psnOfI) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
+		
+		
+		//if nothing fits this methods generates random responses
 		else
 		{
 			response = getRandomResponse();
 		}
-		
 		return response;
 	}
 	
-	
-	
+	//methods behind the I want to statements  
+	private String transformHelp(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I need help with", 0);
+		String restOfStatement = statement.substring(psn + 16).trim();
+		return "Yes! I can definitely help you with" + " " + restOfStatement +"."+ " " + "Tell me more or ask for advice.";
+	}
 
-	 
+	private String transformHelp2(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "Can you help with", 0);
+		String restOfStatement = statement.substring(psn + 17).trim();
+		return "Yes! I can definitely help you with" + " " + restOfStatement +"."+" "+ "Tell me more or ask for advice.";
+	}
 
 	private String transformIWantToStatement(String statement)
 	{
@@ -182,8 +224,6 @@ public class ChatBotWu
 		return "Why do you want to " + restOfStatement + "?";
 	}
 
-	
-	
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -202,7 +242,6 @@ public class ChatBotWu
 	
 	
 	
-	@SuppressWarnings("unused")
 	private String transformIYouStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -225,7 +264,7 @@ public class ChatBotWu
 
 	
 	
-
+	//finds keyword in the user input
 	private int findKeyword(String statement, String goal,
 			int startPos)
 	{
@@ -368,5 +407,6 @@ public class ChatBotWu
 	private String [] falseResponses = {"D'oh!", "Stumped?", "Ouch.", "False :("};
 	private String [] trueResponses = {"Correct!", "Wow!", "Excellent!"};
 	}
-	
-	
+
+
+
