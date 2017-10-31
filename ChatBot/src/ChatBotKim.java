@@ -9,8 +9,8 @@ public class ChatBotKim
 		System.out.println("\n");
 		System.out.println("Drug Abuse & Addiction Support");
 		System.out.println("To return to the main menu simply enter the word 'bye'");
-		return "You have reached Drug Abuse & Addiction Support."
-		return "Are you reaching support for yourself or someone you know?"
+		return "You have reached Drug Abuse & Addiction Support.";
+		return "Are you reaching support for yourself or someone you know?";
 	}
 	Scanner input = new Scanner(System.in);
 	
@@ -43,7 +43,7 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "call")>=0)
 		{
-			response = "You can call and talk to one of our support members personally at 1-800-555-5555."
+			response = "You can call and talk to one of our support members personally at 1-800-555-5555.";
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
@@ -121,6 +121,11 @@ public class ChatBotKim
 
 		return -1;
 	}
+	private int findKeyword(String statement, String goal)
+	{
+		return findKeyword (statement, goal, 0);
+	}
+
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
@@ -161,5 +166,4 @@ public class ChatBotKim
 			"You play any video games?"
 		};
 	
-	}
 }
