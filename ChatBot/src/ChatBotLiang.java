@@ -152,12 +152,10 @@ public class ChatBotLiang
 	{
 		//  Remove the final period, if there is one
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
@@ -174,12 +172,10 @@ public class ChatBotLiang
 	private String transformIWantStatement(String statement)
 	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
@@ -196,18 +192,16 @@ public class ChatBotLiang
 	private String transformIYouStatement(String statement)
 	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfYou = findKeyword (statement, "you", psnOfI);
 		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
+		String restOfStatement = statement.substring(psnOfYou + 1, statement.length()).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
 	
@@ -220,19 +214,17 @@ public class ChatBotLiang
 	private String transformIThinkThatStatement(String statement)
 	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfThink = findKeyword (statement, "think", psnOfI);
 		int psnOfThat = findKeyword (statement, "that", psnOfThink);
 		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfThat).trim();
+		String restOfStatement = statement.substring(psnOfThat + 1, statement.length()).trim();
 		return "Why do you think that " + restOfStatement + "?";
 	}
 	
@@ -245,18 +237,16 @@ public class ChatBotLiang
 	private String transformIWillStatement(String statement)
 	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfWill = findKeyword (statement, "will", psnOfI);
 		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfWill).trim();
+		String restOfStatement = statement.substring(psnOfWill + 1, statement.length()).trim();
 		return "Why will you " + restOfStatement + "?";
 	}
 	
@@ -269,19 +259,17 @@ public class ChatBotLiang
 	private String transformIWillNotStatement(String statement)
 	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfWill = findKeyword (statement, "will", psnOfI);
 		int psnOfNot = findKeyword (statement, "not", psnOfWill);
 		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfNot).trim();
+		String restOfStatement = statement.substring(psnOfNot + 1, statement.length()).trim();
 		return "Why will you not " + restOfStatement + "?";
 	}
 
