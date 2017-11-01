@@ -307,12 +307,22 @@ public class ChatBotLiang
 	private String [] randomHappyResponses = {"Yay", "Great", "Amazing", "Fantastic"};
 	private String [] randomFactResponses = {"Death rates from drug overdose has triples since 1990",
 			"1/5 of teens abuse prescription drugs",
-			"After marijuana, prescription and over-the-counter medications are most commonly abused amongst high school seniors"
+			"After marijuana, prescription and over-the-counter medications are most commonly abused amongst high school seniors",
+			"Teenagers are more likely to use E-Cigarettes than regular cigarettes.",
+			"Alcohol and cigarette use has dropped significantly amongst teens in the past 2 decades.",
+			"According to a study in 2014 on 41,511 students grades 8 to 12, only 14% of high school seniors view E-Cigarettes as harmful.",
+			"According to a study in 2014 on 41,511 students grades 8 to 12, 35% of high school seniors have used marijuana.",
+			"Over 16,500 people died from painkiller overdoses in 2010."
 	};
 	private String [] randomGreetingResponses = {"Hi!", "Hello!"};
 	private String [] randomQuestion = {"How many times has drug overdose cases gone up since the 1990's?",
 			"How many teens abuse prescription drugs?",
-			"What are the second most commonly abused drugs amongst high school students?"
+			"What are the second most commonly abused drugs amongst high school students?",
+			"True or false? Teenagers are more likely to use cigarettes than E-Cigarettes.",
+			"True or false? Alcohol and cigarette use amongst teenagers have been on the rise for the past 2 decades.",
+			"What percentage of high school seniors view E-Cigarettes as harmful?",
+			"What percentage of high school seniors have used marijuana?",
+			"Over how many people died from painkiller overdoses in 2010?"
 	};
 	private String [] correctAnswer = {"Correct!", "Yes!", "Mhm!"};
 	private String [] wrongAnswer = {"Nope!","Incorrect!", "Try again!"};
