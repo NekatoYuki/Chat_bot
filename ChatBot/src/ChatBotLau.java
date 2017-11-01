@@ -209,6 +209,14 @@ public class ChatBotLau {
 			}
 				
 			//Gives information about Prescription Drugs
+			
+			else if (findKeyword(statement, "Bye",0) >= 0)
+				
+			{
+				
+				response = "Okay! Have a nice day!";
+				
+			}
 				
 			else if(findKeyword(statement, "I want to", 0) >= 0)
 			{
@@ -239,8 +247,135 @@ public class ChatBotLau {
 			
 		}
 		
-		private String getRandomResponse ()
 		
+		private String transform_into_want_to_statement(String statement)
+		{
+			
+			//Takes "I want to <something>" into "why do you want to <something>?"
+			
+			statement = statement.trim();
+			String lastChar = statement.substring(statement.length() -1);
+			
+			if(lastChar.equalsIgnoreCase(".")) 
+			{
+				
+				statement = statement.substring(0,statement.length() -1);		
+				
+			}
+			
+			//Removes period
+			
+			int keyword = findKeyword(statement, "I want to", 0);
+			String rest_of_statement = statement.substring(keyword +9).trim();
+			
+			return "Why do you want to " + rest_of_statement + "?";
+			
+		}
+		
+		
+		private String transform_into_would_you_statement(String statement)
+		{
+			
+			//Takes "I want <something> into "Would you really be happy if you had <something>?"
+			
+			statement = statement.trim();
+			String lastChar = statement.substring(0, statement.length() -1);
+			if(lastChar.equalsIgnoreCase("."))
+				
+				{
+				
+					statement = statement.substring(0, statement.length() -1);
+					
+				}
+			
+			//Removes period 
+			
+			int keyword = findKeyword(statement, "I want", 0);
+			String rest_of_statement = statement.substring(keyword + 6).trim();
+			
+			return "Would you really be happy if you had " + rest_of_statement + "?";
+			
+		}
+		
+		
+		private String transform_into_why_do_you(String statement)
+		{
+			
+			//Takes "I <something> you" statement and transforms it into "why do you <something> me?"
+			
+			statement = statement.trim();
+			String lastChar = statement.substring(statement.length() -1);
+			
+			if(lastChar.equalsIgnoreCase("."))
+			{
+				
+				statement = statement.substring(0, statement.length() -1);
+				
+			}
+			
+			//Removes period
+			
+			int keywordI = findKeyword (statement, "I", 0);
+			int keywordYou = findKeyword (statement, "you", keywordI);
+			
+			String rest_of_statement = statement.substring(keywordI + 1, keywordYou).trim();
+			
+			return "Why do you " + rest_of_statement + "me?";
+		}
+		
+	
+		private int findKeyword(String statement, String goal, int startPos)
+		{
+			
+			String phrase = statement.trim().toLowerCase();
+			goal = goal.toLowerCase();
+			
+			int phrase_index = phrase.indexOf(goal, startPos);
+			
+			while(phrase_index >= 0)
+			{
+				
+				String before = " ", after = " ";
+				if(phrase_index > 0)
+				{				
+					
+					before = phrase.substring(phrase_index - 1, phrase_index);
+					
+				}
+				
+				if(phrase_index + goal.length() < phrase.length())
+				{
+					
+					after = phrase.substring(phrase_index + goal.length(), phrase_index + goal.length() + 1);
+					
+				}
+				
+				if(((before.compareTo("a") < 0 || (before.compareTo("z") > 0)) && ((after.compareTo("a") < 0) || (after.compareTo("z") > 0))))
+				{
+					
+					return phrase_index;
+				}
+				
+				phrase_index = phrase.indexOf(goal, phrase_index + 1);
+			}
+			
+			return - 1;
+			
+		}
+		
+		//Find string of len 1 before and after the word
+		//before and after != letters, word has been found
+		
+		
+		private int findKeyword(String statement, String goal)
+		{
+			
+			return findKeyword(statement, goal, 0);
+			
+		}
+		
+		
+		private String getRandomResponse ()
 		{
 			
 			Random r = new Random ();
@@ -266,20 +401,23 @@ public class ChatBotLau {
 		}
 		
 		
-		private String [] randomNeutralResponses = {"Interesting, tell me more",
+		private String [] randomNeutralResponses = {"Interesting, tell me more.",
 				"Hmmm.",
 				"Is that so?",
 				"What other things would you like to know?",
-				"",
+				"Oh wow!",
 				"So, would you like to go for a walk?",
-				"Could you say that again?"
+				"Keep going. I'm listening."
 		};
 		
 		
 		private String [] randomAngryResponses = {"Drugs can cause permanent damage.",
-				"It's impossible to maintain healthy relationships while doing drugs"
-				
+				"It's impossible to maintain healthy relationships while doing drugs",
+				"Grrr...",
+				"Hmph!"		
 		};
+		
+		
 		private String [] randomHappyResponses = {"Fantastic!", 
 				"Amazing job!",
 				"Neat!",
@@ -290,6 +428,7 @@ public class ChatBotLau {
 	}
 
 
-}
+
+		
 
 		
