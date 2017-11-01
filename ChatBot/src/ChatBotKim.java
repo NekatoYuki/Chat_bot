@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class ChatBotKim
 {
-	int emotion = 0;
+	int emotion = 0; //current emotion state
 	
 	public String getGreeting()
 	{
@@ -24,6 +24,7 @@ public class ChatBotKim
 		else if (findKeyword(statement, "no")>=0)
 		{
 			response = "Are you sure you aren't in need of support for someone or yourself?";
+			emotion--;
 			if (findKeyword(statement, "yes")>=0)
 			{
 				response = "Ok then. Please enter 'bye' to return to the main menu";
@@ -49,6 +50,10 @@ public class ChatBotKim
 		{
 			response = "You can call and talk to one of our support members personally at 1-800-555-5555.";
 		}
+		else if (findKeyword(statement, "game")>=0
+		{
+			response = "Do you want to play a game? Enter gameYes to accept or gameNo to decline.";
+			emotion++;
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
@@ -153,20 +158,22 @@ public class ChatBotKim
 	private String [] randomAngryResponses =
 		{
 			">:c",
-			"",
-			"",
+			":c",
+			"Y-youre kinda pissing me off...",
+			"...",
+			"Wouldn't you rather talk to a different chatBot than me?"
 		};
 	private String [] randomHappyResponses =
 		{
-			"",
-			"",
-			"",
+			"I really like you. <3",
+			"Friend <3",
+			"^-^",
 		};
 	private String [] randomSuggestions =
 		{
 			"How about a short game to lighten the mood? :3",
 			"Let's talk about something else besides drugs. Name a sport that you like. ^-^",
-			"You like jazz?",
+			"You like to listen to music?",
 			"You play any video games?"
 		};
 	
