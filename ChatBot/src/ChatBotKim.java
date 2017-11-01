@@ -72,9 +72,9 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "gameYes")>=0)
 		{
-			response = "The only game I know how to play is rock, paper, scissor. Will that be ok? Enter playGame to accept or noGame to decline.;"
+			response = "I can play rock, paper, scissor or Blackjack. Which one do you want to play? Enter playRPS or play BJ or noGame.;"
 		}
-		else if (findKeyword(statement, "playGame")>=0)
+		else if (findKeyword(statement, "playRPS")>=0) //rock paper scissors
 		{
 			response = "We go on the count of 3, ok? 1... 2... 3...!!!";
 			emotion++;
@@ -83,10 +83,27 @@ public class ChatBotKim
 		{
 			response = getRandomGameOutcome();
 		}
+		else if (findKeyword(statement, "playBJ")>=0) //BlackJack
+		{
+			response = "Are you ready? Enter startBJ or noGame.";
+		}
+		else if (findKeyword(Statement, "startBJ")>=0)
+		{
+			response = getRandomCard() + " / " getRandomCard() + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
+			emotion++;
+		}
+		else if (findKeyword(Statement, "Hit Me">=0)
+		{
+			response = getRandomCard();
+		}
 		else if (findKeyword(statement, "music")>=0)
 		{
-			response = "What kind of music do you like? o.o I like Drum & Bass, Electro, and House. X3"
+			response = "What kind of music do you like? o.o I like Drum & Bass, Electro, and House. X3";
 			emotion+2;
+		}
+		else if (findKeyword(statement, "quitGame")>=0)
+		{
+			response = "Thanks for playing!!!"
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
@@ -213,10 +230,26 @@ public class ChatBotKim
 			" <3 <3 <3",
 			"I- I love you a lot! >///^///<",
 		};
-	private String [] randomGameOutcome =
+	private String [] getRandomGameOutcome =
 		{
 			"paper!!!",
 			"rock!!!",
 			"scissor!!!",
-		};	
+		};
+	private String [] getRandomCard =
+		{
+			"A", "A", "A", "A",
+			"2", "2", "2", "2",
+			"3", "3", "3", "3",
+			"4", "4", "4", "4",
+			"5", "5", "5", "5",
+			"6", "6", "6", "6",
+			"7", "7", "7", "7",
+			"8", "8", "8", "8",
+			"9", "9", "9", "9",
+			"10", "10", "10", "10",
+			"J", "J", "J", "J",
+			"Q", "Q", "Q", "Q",
+			"K", "K", "K", "K",
+		};
 }
