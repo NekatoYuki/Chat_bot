@@ -37,17 +37,28 @@ public class ChatBotKim
 				response = "Please indicate who is in need of support.";
 			}
 		}
-		else if (findKeyword(statement, "friend")>=0 || findKeyword(statement, "father")>=0)
+		else if (findKeyword(statement, "someone i know")>=0) 
 		{
-			response = "I see. May I ask for the person's name please?";
+			response = "Ok. Who is this person?";
 		}
-		else if (findKeyword(statement, "mother")>=0 || findKeyword(statement, "cousin")>=0 || findKeyword(statement, "uncle")>=0)
+		else if (findKeyword(statement, "friend")>=0 || findKeyword(statement, "father")>=0 ||
+				findKeyword(statement, "mother")>=0 || findKeyword(statement, "cousin")>=0 ||
+				findKeyword(statement, "uncle")>=0 || findKeyword(statement, "aunt")>=0 ||
+				findKeyword(statement, "brother")>=0 || findKeyword(statement, "sister")>=0)//possible answers if not oneself
 		{
 			response = "I see. May I ask for the person's name please?";
+			if (findKeyword(statement, "no")>=0)
+			{
+				response = "If you really want to help this person, you should give up their name so we can help.";
+			}
 		}
 		else if (findKeyword(statement, "myself")>=0)
 		{
 			response = "I see. May I ask for your name please?";
+			if (findKeyword(statement, "no")>=0)
+			{
+				response = "Ok. It's ok to keep it hidden if you are shy. Why do you want to talk to me?";
+			}
 		}
 		else if (findKeyword(statement, "call")>=0)
 		{
@@ -70,7 +81,7 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "YG")>=0)
 		{
-			response = "I can play rock, paper, scissor or Blackjack. Which one do you want to play? Enter playRPS or play BJ or noGame.";
+			response = "I can play rock, paper, scissor or 21. Which one do you want to play? Enter playRPS or play21 or noGame.";
 		}
 		else if (findKeyword(statement, "playRPS")>=0) //rock paper scissors
 		{
@@ -81,13 +92,13 @@ public class ChatBotKim
 		{
 			response = getRandomGameOutcome();
 		}
-		else if (findKeyword(statement, "playBJ")>=0) //BlackJack
+		else if (findKeyword(statement, "play21")>=0) //BlackJack
 		{
 			response = "Are you ready? Enter startBJ or noGame.";
 		}
-		else if (findKeyword(statement, "startBJ")>=0)
+		else if (findKeyword(statement, "start21")>=0)
 		{
-			response = getRandomCard() + " / " + getRandomCard() + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
+			response = getRandomCard() + " / " + getRandomCard() + " = " + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "Hit")>=0)
@@ -96,6 +107,7 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "Stay")>=0)
 		{
+			
 			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard();
 		}
 		else if (findKeyword(statement, "music")>=0)
@@ -184,7 +196,6 @@ public class ChatBotKim
 	{
 		return findKeyword (statement, goal, 0);
 	}
-
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
