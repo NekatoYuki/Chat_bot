@@ -90,7 +90,7 @@ public class ChatBotKim
 		}
 		else if ((findKeyword(statement, "rock")>=0) || findKeyword(statement, "paper")>=0 || findKeyword(statement, "scissor")>=0)
 		{
-			response = getRandomGameOutcome();
+			response = getRandomGameOutcome() + " Yay! That was fun, want to play again? Enter playRPS to play again or quitGame to quit.";
 		}
 		else if (findKeyword(statement, "play21")>=0) //BlackJack
 		{
@@ -141,6 +141,33 @@ public class ChatBotKim
 		}
 		return response;
 	}
+//	public String twentyone(String args[]) 
+//	{
+//		if (findKeyword(statement, "play21")>=0) //BlackJack
+//		{
+//			response = "Are you ready? Enter startBJ or noGame.";
+//		}
+//		else if (findKeyword(statement, "start21")>=0)
+//		{
+//			int K = 10;
+//			int Q = 10;
+//			int J = 10;
+//			int A = 1;
+//			int x = Integer.parseInt(getRandomCard());
+//			int y = Integer.parseInt(getRandomCard());
+//			int z = x+y;
+//			response = getRandomCard() + " / " + getRandomCard() + "total=" + z + " = " + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
+//			emotion++;
+//		}
+//		else if (findKeyword(statement, "Hit")>=0)
+//		{
+//			response = getRandomCard();
+//		}
+//		else if (findKeyword(statement, "Stay")>=0)
+//		{
+//			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard() + "total=" + z;
+//		}
+//	}
 	private String transformIWantToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
