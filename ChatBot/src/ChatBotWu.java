@@ -18,7 +18,7 @@ public class ChatBotWu
 		//info and intro section of the chatbot
 		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
-		System.out.println("Enter bye to return to menu.");
+		System.out.println("Enter bye to return back to menu.");
 		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Tell me what you need help with so I can listen to you, or you can take a short quiz to test your knowledge, or get facts/advice.";
 	}
 	//input method
@@ -127,9 +127,7 @@ public class ChatBotWu
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Bye!");
-			@SuppressWarnings("unused")
-			ChatBotRunner chatbot1 = new ChatBotRunner();
-			String[] args = new String[0] ;
+			String[] args = new String[0];
 		    ChatBotRunner.main(args);
 		}
 
