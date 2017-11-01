@@ -368,7 +368,9 @@ public class ChatBotWu
 			"I'm listening.",
 			"Go on...",
 			"Can you repeat that again?",
-			 "Do you need advice? Respond with 'advice'.",
+			"Do you need advice? Respond with 'advice'.",
+			"Want a fact? Respond with 'fact'.",
+			"Want to test your knowledge? Respond with 'quiz'."    
 	};
 	
 	private String [] randomAngryResponses = {"...", "Hmph", ">:(", ":("};
