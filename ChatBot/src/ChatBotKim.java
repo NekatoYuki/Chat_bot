@@ -7,14 +7,17 @@ public class ChatBotKim
 	
 	public String getGreeting()
 	{
+		//beginning of chatbot
 		System.out.println("\n");
 		System.out.println("Drug Abuse & Addiction Support");
 		System.out.println("To return to the main menu simply enter the word 'bye'");
 		return "You have reached Drug Abuse & Addiction Support.";
 		return "Are you reaching support for yourself or someone you know?";
 	}
+	//input method
 	Scanner input = new Scanner(System.in);
 	
+	//all possible responses for specific detected keywords
 	public String getResponse(String statement)
 	{
 		String response = "";
@@ -61,10 +64,23 @@ public class ChatBotKim
 			response = "R-Really...? Q///^///Q T-thank you... I love you too.. -blushes- ";
 			emotion+365;
 		}
-		else if (findKeyword(statement, "game")>=0
+		else if (findKeyword(statement, "game")>=0 //game
 		{
 			response = "Do you want to play a game? Enter gameYes to accept or gameNo to decline.";
 			emotion++;
+		}
+		else if (findKeyword(statement, "gameYes")>=0)
+		{
+			response = "The only game I know how to play is rock, paper, scissor. Will that be ok? Enter playGame to accept or noGame to decline.;"
+		}
+		else if (findKeyword(statement, "playGame")>=0)
+		{
+			response = "We go on the count of 3, ok? 1... 2... 3...!!!";
+			emotion++;
+		}
+		else if (findKeyword(statement, "rock")>=0) || findKeyword(statement, "paper")>=0 || findKeyword(statement, "scissor")>=0)
+		{
+			response = getRandomGameOutcome();
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
