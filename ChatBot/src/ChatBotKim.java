@@ -24,15 +24,15 @@ public class ChatBotKim
 		{
 			response = "Please indicate who is in need of support.";
 		}
-		else if (findKeyword(statement, "no")>=0)
+		else if (findKeyword(statement, "no one")>=0)
 		{
 			response = "Are you sure you aren't in need of support for someone or yourself?";
 			emotion--;
-			if (findKeyword(statement, "yes")>=0)
+			if (findKeyword(statement, "yes im sure")>=0)
 			{
 				response = "Ok then. Please enter 'bye' to return to the main menu";
 			}
-			else if (findKeyword(statement, "no")>=0)
+			else if (findKeyword(statement, "no im not sure")>=0)
 			{
 				response = "Please indicate who is in need of support.";
 			}
@@ -122,6 +122,10 @@ public class ChatBotKim
 		else if (findKeyword(statement, "bored")>=0)
 		{
 			response = getRandomSuggestions();
+			if (findKeyword(statement, "no")>=0 || findKeyword(statement, "nah")>=0);
+			{
+				response = getRandomSuggestions();
+			}
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
