@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class ChatBotKim
 {
@@ -81,6 +83,11 @@ public class ChatBotKim
 		{
 			response = getRandomGameOutcome();
 		}
+		else if (findKeyword(statement, "music")>=0)
+		{
+			response = "What kind of music do you like? o.o I like Drum & Bass, Electro, and House. X3"
+			emotion+2;
+		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
@@ -99,12 +106,10 @@ public class ChatBotKim
 	{
 		//  Remove the final period, if there is one
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
