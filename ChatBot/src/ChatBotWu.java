@@ -49,13 +49,13 @@ public class ChatBotWu
 		}
 		
 		
-		//quiz
+		//Quiz
 		else if (findKeyword(statement, "question") >= 0||
 				findKeyword(statement, "test") >= 0 ||
 				findKeyword(statement, "knowledge") >= 0 ||
 				findKeyword(statement, "quiz") >= 0)
 		{
-			response = "Test your knowledge! See if you can get these questions correct! To start respond with quizYes or quizNo.";
+			response = "Test your knowledge! See if you can get these questions correct! To start respond with quizYes, to exit, respond with quizNo.";
                 	emotion++;
 		}
 		//user select yes
@@ -226,7 +226,7 @@ public class ChatBotWu
 		}
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		return "Do you think you would be happy if you had " + restOfStatement + "?";
 	}
 	
 	
@@ -396,5 +396,3 @@ public class ChatBotWu
 	private String [] trueResponses = {"Correct!", "Wow!", "Excellent!"};
 	private String [] randomGreeting = {"G'day mate!", "Hello!", "What's up!", "Howdy!", "Sup!"};
 	}
-
-
