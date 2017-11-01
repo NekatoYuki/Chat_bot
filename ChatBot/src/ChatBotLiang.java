@@ -45,18 +45,21 @@ public class ChatBotLiang
 			emotion++;
 		}
 		
+		//Will give a random fact from the facts list.
 		else if (findKeyword(statement, "AFact") >= 0)
 		{
 			response = getRandomFactResponses();
 		}
 		
-		else if (findKeyword(statement, "quiz") >= 0)
+		//Will ask the user if they want to answer a random question based on the facts provided.
+		else if (findKeyword(statement, "question") >= 0)
 		{
-			response = "Ready for a quiz? Respond with qy or qn.";
+			response = "Ready for a quiz? Respond with aquestion or no. (Enter aquestion everytime you want a question.)";
 			emotion++;
 		}
 		
-		else if (findKeyword(statement, "qy") >= 0)
+		//Will start the quiz with random questions.
+		else if (findKeyword(statement, "aquestion") >= 0)
 		{
 			response = getRandomQuestion();
 			emotion++;
@@ -66,7 +69,7 @@ public class ChatBotLiang
 		{
 			response = getCorrectAnswer();
 		}
-		
+
 		else if (findKeyword(statement, "3") >= 0)
 		{
 			response = getCorrectAnswer();
@@ -76,8 +79,37 @@ public class ChatBotLiang
 		{
 			response = getCorrectAnswer();
 		}
+		
+		else if (findKeyword(statement, "false") >= 0)
+		{
+			response = getCorrectAnswer();
+		}
+		
+		else if (findKeyword(statement, "false") >= 0)
+		{
+			response = getCorrectAnswer();
+		}
+		
+		else if (findKeyword(statement, "true") >= 0)
+		{
+			response = getWrongAnswer();
+		}
+		
+		else if (findKeyword(statement, "14") >= 0)
+		{
+			response = getCorrectAnswer();
+		}
+		
+		else if (findKeyword(statement, "35") >= 0)
+		{
+			response = getCorrectAnswer();
+		}
+		
+		else if (findKeyword(statement, "16,500") >= 0)
+		{
+			response = getCorrectAnswer();
+		}
 
-		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
@@ -86,6 +118,22 @@ public class ChatBotLiang
 		{
 			response = transformIWantStatement(statement);
 		}	
+		else if (findKeyword(statement, "I think",0) >= 0)
+		{
+			response = transformIThinkThatStatement(statement);
+		}
+		else if (findKeyword (statement, "you",0) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
+		else if (findKeyword (statement, "I will",0) >= 0)
+		{
+			response = transformIWillStatement(statement);
+		}
+		else if (findKeyword (statement, "I will not",0) >= 0)
+		{
+			response = transformIWillNotStatement(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -125,7 +173,6 @@ public class ChatBotLiang
 	 */
 	private String transformIWantStatement(String statement)
 	{
-		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
@@ -148,7 +195,6 @@ public class ChatBotLiang
 	 */
 	private String transformIYouStatement(String statement)
 	{
-		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
@@ -165,6 +211,79 @@ public class ChatBotLiang
 		return "Why do you " + restOfStatement + " me?";
 	}
 	
+	/**
+	 * This will take a statement with "I think <something>" and transforms it into
+	 * "Why do you think <something>?"
+	 * @param statement the user statement, assumed to contain "I think" followed by something
+	 * @return
+	 */
+	private String transformIThinkThatStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfThink = findKeyword (statement, "think", psnOfI);
+		int psnOfThat = findKeyword (statement, "that", psnOfThink);
+		
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfThat).trim();
+		return "Why do you think that " + restOfStatement + "?";
+	}
+	
+	/**
+	 * This will take a statement with "I will <something>" and transform it into a
+	 * "Why will you <something>?"
+	 * @param statement the user statement, assumed to contain "I will" followed by something
+	 * @return
+	 */
+	private String transformIWillStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfWill = findKeyword (statement, "will", psnOfI);
+		
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfWill).trim();
+		return "Why will you " + restOfStatement + "?";
+	}
+	
+	/**
+	 * This will take a statement with "I will not <something>" and transform it into a
+	 * "Why will you not <something>?"
+	 * @param statement the user statement, assumed to contain "I will not" followed by something
+	 * @return
+	 */
+	private String transformIWillNotStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfWill = findKeyword (statement, "will", psnOfI);
+		int psnOfNot = findKeyword (statement, "not", psnOfWill);
+		
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfNot).trim();
+		return "Why will you not " + restOfStatement + "?";
+	}
 
 	
 	
@@ -324,6 +443,6 @@ public class ChatBotLiang
 			"What percentage of high school seniors have used marijuana?",
 			"Over how many people died from painkiller overdoses in 2010?"
 	};
-	private String [] correctAnswer = {"Correct!", "Yes!", "Mhm!"};
+	private String [] correctAnswer = {"Correct!", "Yes!"};
 	private String [] wrongAnswer = {"Nope!","Incorrect!", "Try again!"};
 }
