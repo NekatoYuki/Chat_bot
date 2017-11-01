@@ -50,10 +50,21 @@ public class ChatBotKim
 		{
 			response = "You can call and talk to one of our support members personally at 1-800-555-5555.";
 		}
+		else if (findKeyword(statement, "I like you")>=0)
+		{
+			response = "I like you too!!! :D";
+			emotion+2;
+		}
+		else if (findKeyword(statement, "I love you")>=0)
+		{
+			response = "R-Really...? Q///^///Q T-thank you... I love you too.. -blushes- ";
+			emotion+365;
+		}
 		else if (findKeyword(statement, "game")>=0
 		{
 			response = "Do you want to play a game? Enter gameYes to accept or gameNo to decline.";
 			emotion++;
+		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
@@ -145,7 +156,11 @@ public class ChatBotKim
 		if (emotion < 0)
 		{	
 			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-		}	
+		}
+		if (emotion >=365)
+		{
+			return randomLoveResponse [r.nextInt(randomLoveResponses.length)];
+		}
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
 	private String [] randomNeutralResponses =
@@ -175,6 +190,12 @@ public class ChatBotKim
 			"Let's talk about something else besides drugs. Name a sport that you like. ^-^",
 			"You like to listen to music?",
 			"You play any video games?"
+		};
+	private String [] randomLoveResponses =
+		{
+			"-happily listening-",
+			" <3 <3 <3",
+			"I- I love you a lot! >///^///<",
 		};
 	
 }
