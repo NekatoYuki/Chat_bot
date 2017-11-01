@@ -214,5 +214,10 @@ public class ChatBotKim
 			" <3 <3 <3",
 			"I- I love you a lot! >///^///<",
 		};
-	
+	private String [] randomGameOutcome =
+		{
+			"paper!!!",
+			"rock!!!",
+			"scissor!!!",
+		};	
 }
