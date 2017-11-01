@@ -45,7 +45,7 @@ public class ChatBotKim
 		{
 			response = "I see. May I ask for the person's name please?";
 		}
-		else if (findKeyword(statement, "myself")>=0 || findKeyword(statement, "me")>=0)
+		else if (findKeyword(statement, "myself")>=0)
 		{
 			response = "I see. May I ask for your name please?";
 		}
@@ -65,10 +65,10 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "game")>=0) //game
 		{
-			response = "Do you want to play a game? Enter gameYes to accept or gameNo to decline.";
+			response = "Do you want to play a game? Enter YG to accept or NG to decline.";
 			emotion++;
 		}
-		else if (findKeyword(statement, "gameYes")>=0)
+		else if (findKeyword(statement, "YG")>=0)
 		{
 			response = "I can play rock, paper, scissor or Blackjack. Which one do you want to play? Enter playRPS or play BJ or noGame.";
 		}
@@ -90,9 +90,13 @@ public class ChatBotKim
 			response = getRandomCard() + " / " + getRandomCard() + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
 			emotion++;
 		}
-		else if (findKeyword(statement, "Hit Me")>=0)
+		else if (findKeyword(statement, "Hit")>=0)
 		{
 			response = getRandomCard();
+		}
+		else if (findKeyword(statement, "Stay")>=0)
+		{
+			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard();
 		}
 		else if (findKeyword(statement, "music")>=0)
 		{
@@ -102,6 +106,10 @@ public class ChatBotKim
 		else if (findKeyword(statement, "quitGame")>=0)
 		{
 			response = "Thanks for playing!!!";
+		}
+		else if (findKeyword(statement, "bored")>=0)
+		{
+			response = getRandomSuggestions();
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
@@ -206,6 +214,13 @@ public class ChatBotKim
 		Random r = new Random ();
 		{
 		return getRandomCard [r.nextInt(getRandomCard.length)];
+		}
+	}
+	private String getRandomSuggestions ()
+	{
+		Random r = new Random ();
+		{
+		return randomSuggestions [r.nextInt(randomSuggestions.length)];
 		}
 	}
 	private String [] randomNeutralResponses =
