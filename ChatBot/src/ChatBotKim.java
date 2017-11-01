@@ -1,7 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.awt.Desktop;
-import java.net.URI;
 
 public class ChatBotKim
 {
@@ -9,7 +7,7 @@ public class ChatBotKim
 	
 	public String getGreeting()
 	{
-		//beginning of chatbot
+		//beginning of chat_bot
 		System.out.println("\n");
 		System.out.println("Drug Abuse & Addiction Support");
 		System.out.println("To return to the main menu simply enter the word 'bye'");
@@ -58,28 +56,28 @@ public class ChatBotKim
 		else if (findKeyword(statement, "I like you")>=0)
 		{
 			response = "I like you too!!! :D";
-			emotion+2;
+			emotion++;
 		}
 		else if (findKeyword(statement, "I love you")>=0)
 		{
 			response = "R-Really...? Q///^///Q T-thank you... I love you too.. -blushes- ";
-			emotion+365;
+			emotion+=365;
 		}
-		else if (findKeyword(statement, "game")>=0 //game
+		else if (findKeyword(statement, "game")>=0) //game
 		{
 			response = "Do you want to play a game? Enter gameYes to accept or gameNo to decline.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "gameYes")>=0)
 		{
-			response = "I can play rock, paper, scissor or Blackjack. Which one do you want to play? Enter playRPS or play BJ or noGame.;"
+			response = "I can play rock, paper, scissor or Blackjack. Which one do you want to play? Enter playRPS or play BJ or noGame.";
 		}
 		else if (findKeyword(statement, "playRPS")>=0) //rock paper scissors
 		{
 			response = "We go on the count of 3, ok? 1... 2... 3...!!!";
 			emotion++;
 		}
-		else if (findKeyword(statement, "rock")>=0) || findKeyword(statement, "paper")>=0 || findKeyword(statement, "scissor")>=0)
+		else if ((findKeyword(statement, "rock")>=0) || findKeyword(statement, "paper")>=0 || findKeyword(statement, "scissor")>=0)
 		{
 			response = getRandomGameOutcome();
 		}
@@ -87,23 +85,23 @@ public class ChatBotKim
 		{
 			response = "Are you ready? Enter startBJ or noGame.";
 		}
-		else if (findKeyword(Statement, "startBJ")>=0)
+		else if (findKeyword(statement, "startBJ")>=0)
 		{
-			response = getRandomCard() + " / " getRandomCard() + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
+			response = getRandomCard() + " / " + getRandomCard() + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
 			emotion++;
 		}
-		else if (findKeyword(Statement, "Hit Me">=0)
+		else if (findKeyword(statement, "Hit Me")>=0)
 		{
 			response = getRandomCard();
 		}
 		else if (findKeyword(statement, "music")>=0)
 		{
 			response = "What kind of music do you like? o.o I like Drum & Bass, Electro, and House. X3";
-			emotion+2;
+			emotion++;
 		}
 		else if (findKeyword(statement, "quitGame")>=0)
 		{
-			response = "Thanks for playing!!!"
+			response = "Thanks for playing!!!";
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
@@ -166,7 +164,7 @@ public class ChatBotKim
 
 			// If before and after aren't letters, we've
 			// found the word
-			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0) && ((after.compareTo("a") < 0) || (after.compareTo("z") > 0)))
+			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0) && ((after.compareTo("a") < 0) || (after.compareTo("z") > 0))))
 			{
 				return psn;
 			}
@@ -192,9 +190,23 @@ public class ChatBotKim
 		}
 		if (emotion >=365)
 		{
-			return randomLoveResponse [r.nextInt(randomLoveResponses.length)];
+			return randomLoveResponses [r.nextInt(randomLoveResponses.length)];
 		}
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
+	}
+	private String getRandomGameOutcome ()
+	{
+		Random r = new Random ();
+		{
+		return getRandomGameOutcome [r.nextInt(getRandomGameOutcome.length)];
+		}
+	}
+	private String getRandomCard ()
+	{
+		Random r = new Random ();
+		{
+		return getRandomCard [r.nextInt(getRandomCard.length)];
+		}
 	}
 	private String [] randomNeutralResponses =
 		{
