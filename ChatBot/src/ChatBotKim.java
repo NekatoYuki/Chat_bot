@@ -11,8 +11,7 @@ public class ChatBotKim
 		System.out.println("\n");
 		System.out.println("Drug Abuse & Addiction Support");
 		System.out.println("To return to the main menu simply enter the word 'bye'");
-		return "You have reached Drug Abuse & Addiction Support.";
-		return "Are you reaching support for yourself or someone you know?";
+		return "You have reached Drug Abuse & Addiction Support. Are you reaching support for yourself or someone you know?";
 	}
 	//input method
 	Scanner input = new Scanner(System.in);
