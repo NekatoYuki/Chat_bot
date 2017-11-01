@@ -109,7 +109,19 @@ public class ChatBotKim
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Do you really believe it's ok to" + restOfStatement + "?" + " Doing" + restOfStatement + "will be bad for your overall health";
+		return "Do you really believe it's ok to" + restOfStatement + "?";
+	}
+	private String transformCanYouStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length()-1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length()-1);
+		}
+		int psn = findKeyword (statement, "Can you", 0);
+		String restOfStatement = statement.substring(psn + 9).trim();
+		return "Of course I can" + restOfStatement + "." + "Anything specific you need to tell me?";
 	}
 	private int findKeyword(String statement, String goal,
 			int startPos)
