@@ -72,7 +72,7 @@ public class ChatBotLau {
 
 			}
 
-			//Plus one emotion level if the user says "Lau"
+			//Plus one emotion level if the user says "I won't"
 			
 			
 			else if (findKeyword(statement, "friend") >= 0)
@@ -210,7 +210,21 @@ public class ChatBotLau {
 				
 			//Gives information about Prescription Drugs
 				
+			else if(findKeyword(statement, "I want to", 0) >= 0)
+			{
 				
+				response = transform_into_want_to_statement(statement);	
+				
+			}
+			
+			
+			else if (findKeyword(statement, "I want", 0) >= 0)
+			{
+				
+				response = transform_into_would_you_statement(statement);
+				
+			}
+			
 			else
 
 			{
