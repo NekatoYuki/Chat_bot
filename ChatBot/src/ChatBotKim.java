@@ -17,7 +17,7 @@ public class ChatBotKim
 	Scanner input = new Scanner(System.in);
 	
 	//all possible responses for specific detected keywords
-	public String getResponse(String statement)
+	public String getResponse(String statement) throws Exception
 	{
 		String response = "";
 		if (statement.length()==0)
@@ -94,11 +94,11 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "play21")>=0) //BlackJack
 		{
-			response = "Are you ready? Enter startBJ or noGame.";
+			response = "Are you ready? Enter start21 or noGame.";
 		}
 		else if (findKeyword(statement, "start21")>=0)
 		{
-			response = getRandomCard() + " / " + getRandomCard() + " = " + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
+			response = getRandomCard() + " / " + getRandomCard() + " = " + ": Enter 'Hit' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "Hit")>=0)
@@ -109,6 +109,10 @@ public class ChatBotKim
 		{
 			
 			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard();
+		}
+		else if (findKeyword(statement, "noGame")>=0)
+		{
+			response = "Is there anything else you want to talk about?";
 		}
 		else if (findKeyword(statement, "music")>=0)
 		{
