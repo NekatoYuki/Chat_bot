@@ -1,10 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.net.URI;
 
 /* This version:
  * @author Mr. Levin - Reference/starter Code 
- 		   Evan Wu - Modified Code
- 		   Chatbot Project - Due 11/1/17
+ *		   Evan Wu - Modified Code
+ *		   Chatbot Project - Due 11/1/17
  * @version October 2017
  */
 public class ChatBotWu
@@ -12,20 +14,20 @@ public class ChatBotWu
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
 	
-	
+	 
 	public String getGreeting()
 	{
 		//info and intro section of the chatbot
 		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
 		System.out.println("Enter bye to return back to menu.");
-		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Tell me what you need help with so I can listen to you, or you can take a short quiz to test your knowledge, or get facts/advice.";
+		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Tell me what you need help with so I can listen to you, or you can take a short quiz to test your knowledge, or get facts/advice/resources.";
 	}
 	//input method
 	Scanner input = new Scanner(System.in);
 	
 	//chatbot responses for certain keywords
-	public String getResponse(String statement)
+	public String getResponse(String statement) throws Exception
 	{
 		String response = "";
 		
@@ -110,6 +112,18 @@ public class ChatBotWu
 	                  emotion++;
 	    }
 		
+		//searches web for online resources
+		else if (findKeyword(statement, "search") >= 0
+				||findKeyword(statement, "resource") >= 0
+				||findKeyword(statement, "resources") >= 0)
+		{
+			response = "Do you want me to link you to search results for drug abuse resources? Respond with searchYes.";
+		}
+		else if (findKeyword(statement, "searchyes") >= 0)
+		{
+			response = searchWeb();
+		}
+		
 	
 		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
@@ -152,9 +166,7 @@ public class ChatBotWu
 		}
 		
 		
-		
-		
-		//if nothing fits this methods generates random responses
+		//if nothing fits this method generates random responses
 		else
 		{
 			response = getRandomResponse();
@@ -227,8 +239,15 @@ public class ChatBotWu
 		return "Do you think you would be happy if you had " + restOfStatement + "?";
 	}
 	
-	
-
+	//Searches web for web results for drug abuse
+	//Sourced code from various online resources
+	private String searchWeb() throws Exception
+	{
+		 Desktop desktop=Desktop.getDesktop();
+			desktop.browse(new URI("https://www.google.com/search?q=drug+abuse&oq=drug+abuse"));
+			return "Loading...";
+			
+	}
 	
 	
 	//finds keyword in the user input
