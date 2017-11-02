@@ -43,7 +43,14 @@ public class ChatBotWu
                 	emotion--;
 		}
 		
-		if (findKeyword(statement, "yes") >= 0
+		else if (findKeyword(statement, "hi") >= 0
+				||findKeyword(statement, "hello") >= 0)
+		{
+			response = getRandomGreeting();
+                	emotion++;
+		}
+		
+		else if (findKeyword(statement, "yes") >= 0
 				||(findKeyword(statement, "friend") >= 0))
 		{
 			response = "Tell me more, I'm listening";
