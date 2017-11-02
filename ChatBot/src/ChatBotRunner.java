@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * A simple class to run our chatbot teams.
  * @author Mr. Levin - Starter Code
- 		Kenneth Kim, Jeffery Lau, Stanley Liang, Evan Wu - Modified Code
+ *    	Kenneth Kim, Jeffery Lau, Stanley Liang, Evan Wu - Modified Code
  * @version September 2017; Updated October 2017
  */
 @SuppressWarnings("unused")
@@ -12,9 +12,9 @@ public class ChatBotRunner
 {
 	
 	@SuppressWarnings("resource")
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
-		
+		 
 		//Value storage for chatbot names?
 		ChatBotKim chatbot1 = new ChatBotKim();
 		ChatBotLau chatbot2 = new ChatBotLau();
@@ -63,7 +63,7 @@ public class ChatBotRunner
 
 	
 	else if (choose.equals("3")) {
-	System.out.println (chatbot3.getGreeting());
+	System.out.println (ChatBotLiang.getGreeting());
 	Scanner in = new Scanner (System.in);
 	String statement = in.nextLine();
 
@@ -92,4 +92,3 @@ public class ChatBotRunner
 	}
 	}
 }
-	
