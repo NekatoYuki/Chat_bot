@@ -106,7 +106,7 @@ public class ChatBotWu
 		//more chatbot responses 
 		else if (findKeyword(statement, "advice") >= 0 )
 		{
-			response = getRandomAdvice();
+			response = "Here's an advice:" + " " + getRandomAdvice();
                 	emotion++;
 		}
 		
@@ -114,7 +114,7 @@ public class ChatBotWu
 		else if (findKeyword(statement, "fact") >= 0||
 		(findKeyword(statement, "facts") >= 0))
 		{
-			response = "Heres a fact:" + " " + getRandomFact();
+			response = "Here's a fact:" + " " + getRandomFact();
 			
 	                  emotion++;
 	    }
