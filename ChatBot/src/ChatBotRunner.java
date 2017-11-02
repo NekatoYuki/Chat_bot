@@ -63,7 +63,7 @@ public class ChatBotRunner
 
 	
 	else if (choose.equals("3")) {
-	System.out.println (ChatBotLiang.getGreeting());
+	System.out.println (chatbot3.getGreeting());
 	Scanner in = new Scanner (System.in);
 	String statement = in.nextLine();
 
