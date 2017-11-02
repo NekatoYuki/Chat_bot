@@ -60,7 +60,7 @@ public class ChatBotKim
 				response = "Ok. It's ok to keep it hidden if you are shy. Why do you want to talk to me?";
 			}
 		}
-		else if (findKeyword(statement, "call")>=0)
+		else if (findKeyword(statement, "call")>=0 || findKeyword(statement, "number")>=0)
 		{
 			response = "You can call and talk to one of our support members personally at 1-800-555-5555.";
 		}
