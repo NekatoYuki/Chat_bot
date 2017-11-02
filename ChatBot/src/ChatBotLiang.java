@@ -63,51 +63,50 @@ public class ChatBotLiang
 		{
 			response = getRandomQuestion();
 			emotion++;
-		}
-		
-		else if (findKeyword(statement, "1/5") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
+			if (findKeyword(statement, "1/5") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
 
-		else if (findKeyword(statement, "3") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "over-the-counter") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "false") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "false") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "true") >= 0)
-		{
-			response = getWrongAnswer();
-		}
-		
-		else if (findKeyword(statement, "14") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "35") >= 0)
-		{
-			response = getCorrectAnswer();
-		}
-		
-		else if (findKeyword(statement, "16,500") >= 0)
-		{
-			response = getCorrectAnswer();
+			else if (findKeyword(statement, "3") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "over-the-counter") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "false") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "false") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "true") >= 0)
+			{
+				response = getWrongAnswer();
+			}
+			
+			else if (findKeyword(statement, "14") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "35") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
+			
+			else if (findKeyword(statement, "16,500") >= 0)
+			{
+				response = getCorrectAnswer();
+			}
 		}
 
 		else if (findKeyword(statement, "I want to", 0) >= 0)
