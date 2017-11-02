@@ -131,6 +131,10 @@ public class ChatBotKim
 				response = getRandomSuggestions();
 			}
 		}
+		else if (findKeyword(statement, "drug")>=0)
+		{
+			response = "That is a problem isn't it. However, we do have some numbers and site you can use for help.";
+		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
