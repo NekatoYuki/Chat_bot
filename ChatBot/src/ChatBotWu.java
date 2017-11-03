@@ -21,7 +21,7 @@ public class ChatBotWu
 		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
 		System.out.println("Enter bye to return back to menu.");
-		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Talk to me or type 'options' for more options!";
+		return "\n" + getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Talk to me or type 'options' for more options!";
 	} 
 	//input method 
 	Scanner input = new Scanner(System.in);
