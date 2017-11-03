@@ -257,8 +257,7 @@ public class ChatBotWu
 	{
 		 Desktop desktop=Desktop.getDesktop();
 			desktop.browse(new URI("https://www.google.com/search?q=drug+abuse&oq=drug+abuse"));
-			return "Loading...";
-			
+			return "Loading browser...";	
 	}
 	
 	
