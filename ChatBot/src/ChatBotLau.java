@@ -1,4 +1,3 @@
-package rooms;
 
 import java.util.Random;
 
