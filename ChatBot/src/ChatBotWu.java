@@ -414,6 +414,8 @@ public class ChatBotWu
 			"You don't say.",
 			"I'm listening.",
 			"Go on...",
+			"Interesting...",
+			"Uh-huh.",			    
 			"Can you repeat that again?",
 			"Do you need advice? Respond with 'advice'.",
 			"Want a fact? Respond with 'fact'.",
