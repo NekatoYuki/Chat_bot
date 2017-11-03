@@ -1,4 +1,4 @@
- import java.awt.Desktop;
+import java.awt.Desktop;
 import java.net.URI;
 import java.util.Random;
 
@@ -7,16 +7,16 @@ import java.util.Random;
  * This version:
  * @author Mr. Levin
  * Stanley Liang - Modified Code
- * @version October 2017
+ * @version November 2017
  */
 public class ChatBotLiang
 { 
 	int emotion = 0;
 	public String getGreeting()
 	{
-		return "Welcome! Do you want to know some drug awareness facts? Type mm to return to the main menu.";
+		return "Welcome! Type in help for a list of commands.";
 	}
-	public String getResponse(String statement)
+	public String getResponse(String statement) throws Exception
 	{
 		String response = "";
 		
@@ -25,11 +25,21 @@ public class ChatBotLiang
 			response = "Say something, please.";
 		}
 		
-		else if (findKeyword (statement, "mm",0) >= 0)
+		else if (findKeyword (statement, "main menu",0) >= 0)
 		{
 			System.out.println("Returning to main menu...");
 			String[] args = new String[0];
 		    ChatBotRunner.main(args);
+		}
+		
+		else if (findKeyword (statement, "help",0) >= 0)
+		{
+			response = "Type afact to get a fact." 
+					+ "\n" + "Type aquestion to get a question."
+					+ "\n" + "Type main menu to return to the main menu."
+					+ "\n" + "Type works cited to be linked to the source of all the information here."
+					+ "\n" + "Or just say something you have in mind.";
+				
 		}
 		
 		else if (findKeyword(statement, "Hi") >= 0)
@@ -163,12 +173,37 @@ public class ChatBotLiang
 			response = workCited();
 		}
 		
+		else if (findKeyword (statement, "how to",0) >= 0)
+		{
+			response = transformHowToStatement(statement);
+		}
+		
 		else
 		{
 			response = getRandomResponse();
 		}
 		
 		return response;
+	}
+	
+	/**
+	 * Take a statement with "How to <something>." and transform it into 
+	 * "I don't know how to <something>, what do you think?"
+	 * @param statement the user statement, assumed to contain "how to"
+	 * @return the transformed statement
+	 */
+	private String transformHowToStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		int psn = findKeyword (statement, "How to", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "I don't know how to " + restOfStatement + ", " + "what do you think?";
 	}
 	
 	/**
@@ -230,7 +265,7 @@ public class ChatBotLiang
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfYou = findKeyword (statement, "you", psnOfI);
 		
-		String restOfStatement = statement.substring(psnOfYou + 1, statement.length()).trim();
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou-1).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
 	
@@ -415,7 +450,7 @@ public class ChatBotLiang
 	}
 	
 	//Takes you to the source of all the information for this chat bot
-	private String workCited(String[]) throws Exception
+	private String workCited() throws Exception
 	{
 			//Creates a desktop object
 		 Desktop d = Desktop.getDesktop();
