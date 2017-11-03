@@ -1,4 +1,6 @@
- import java.util.Random;
+ import java.awt.Desktop;
+import java.net.URI;
+import java.util.Random;
 
 /**
  * A program to carry on conversations with a human user.
@@ -12,7 +14,7 @@ public class ChatBotLiang
 	int emotion = 0;
 	public String getGreeting()
 	{
-		return "Do you want to know some drug awareness facts?";
+		return "Welcome! Do you want to know some drug awareness facts? Type mm to return to the main menu.";
 	}
 	public String getResponse(String statement)
 	{
@@ -21,6 +23,13 @@ public class ChatBotLiang
 		if (statement.length() == 0)
 		{
 			response = "Say something, please.";
+		}
+		
+		else if (findKeyword (statement, "mm",0) >= 0)
+		{
+			System.out.println("Returning to main menu...");
+			String[] args = new String[0];
+		    ChatBotRunner.main(args);
 		}
 		
 		else if (findKeyword(statement, "Hi") >= 0)
@@ -113,34 +122,47 @@ public class ChatBotLiang
 		{
 			response = transformIWantToStatement(statement);
 		}
+		
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}	
+		
 		else if (findKeyword(statement, "I think",0) >= 0)
 		{
 			response = transformIThinkThatStatement(statement);
 		}
+		
 		else if (findKeyword (statement, "you",0) >= 0)
 		{
 			response = transformIYouStatement(statement);
 		}
+		
 		else if (findKeyword (statement, "I will",0) >= 0)
 		{
 			response = transformIWillStatement(statement);
 		}
+		
 		else if (findKeyword (statement, "I will not",0) >= 0)
 		{
 			response = transformIWillNotStatement(statement);
 		}
+		
 		else if (findKeyword (statement, "I do not",0) >= 0)
 		{
 			response = transformIDoNotStatement(statement);
 		}
+		
 		else if (findKeyword (statement, "I do",0) >= 0)
 		{
 			response = transformIDoStatement(statement);
 		}
+		
+		else if (findKeyword (statement, "source",0) >= 0 || findKeyword (statement, "works cited",0) >= 0)
+		{
+			response = workCited();
+		}
+		
 		else
 		{
 			response = getRandomResponse();
@@ -390,6 +412,17 @@ public class ChatBotLiang
 		}
 
 		return -1;
+	}
+	
+	//Takes you to the source of all the information for this chat bot
+	private String workCited(String[]) throws Exception
+	{
+			//Creates a desktop object
+		 Desktop d = Desktop.getDesktop();
+		 	//Opens the URL
+			d.browse(new URI("http://www.preventionlane.org/national-drug-facts-awareness-week"));
+			return "Opening Source Page";
+			
 	}
 	
 	/**
