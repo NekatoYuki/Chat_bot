@@ -140,7 +140,7 @@ public class ChatBotWu
 				||findKeyword(statement, "google") >= 0
 				||findKeyword(statement, "resources") >= 0)
 		{
-			response = "Do you want me to link you to search results for drug abuse resources? Respond with 'searchYes', to exit, respind with 'exit'.";
+			response = "Do you want me to link you to search results for drug abuse resources? Respond with 'searchYes', to exit, respond with 'exit'.";
 		}
 		else if (findKeyword(statement, "searchyes") >= 0)
 		{
