@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class ChatBotKim
 {
@@ -81,7 +83,7 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "YG")>=0)
 		{
-			response = "I can play rock, paper, scissor or 21. Which one do you want to play? Enter playRPS or play21 or noGame.";
+			response = "I can play rock, paper, scissor. Which one do you want to play? Enter playRPS or noGame.";
 		}
 		else if (findKeyword(statement, "playRPS")>=0) //rock paper scissors
 		{
@@ -91,24 +93,6 @@ public class ChatBotKim
 		else if ((findKeyword(statement, "rock")>=0) || findKeyword(statement, "paper")>=0 || findKeyword(statement, "scissor")>=0)
 		{
 			response = getRandomGameOutcome() + " Yay! That was fun, want to play again? Enter playRPS to play again or quitGame to quit.";
-		}
-		else if (findKeyword(statement, "play21")>=0) //BlackJack
-		{
-			response = "Are you ready? Enter start21 or noGame.";
-		}
-		else if (findKeyword(statement, "start21")>=0)
-		{
-			response = getRandomCard() + " / " + getRandomCard() + " = " + ": Enter 'Hit' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
-			emotion++;
-		}
-		else if (findKeyword(statement, "Hit")>=0)
-		{
-			response = getRandomCard();
-		}
-		else if (findKeyword(statement, "Stay")>=0)
-		{
-			
-			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard();
 		}
 		else if (findKeyword(statement, "noGame")>=0)
 		{
@@ -135,6 +119,11 @@ public class ChatBotKim
 		{
 			response = "That is a problem isn't it. However, we do have some numbers and site you can use for help.";
 		}
+		else if (findKeyword(statement, "web")>=0 || findKeyword(statement, "site")>=0)
+		{
+			response = website1();
+		}
+		else if (findKeyword(statement, "I want to"
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
@@ -149,33 +138,6 @@ public class ChatBotKim
 		}
 		return response;
 	}
-//	public String twentyone(String args[]) 
-//	{
-//		if (findKeyword(statement, "play21")>=0) //BlackJack
-//		{
-//			response = "Are you ready? Enter startBJ or noGame.";
-//		}
-//		else if (findKeyword(statement, "start21")>=0)
-//		{
-//			int K = 10;
-//			int Q = 10;
-//			int J = 10;
-//			int A = 1;
-//			int x = Integer.parseInt(getRandomCard());
-//			int y = Integer.parseInt(getRandomCard());
-//			int z = x+y;
-//			response = getRandomCard() + " / " + getRandomCard() + "total=" + z + " = " + ": Enter 'Hit Me' to take card or 'Stay' to keep your hand. Otherwise enter 'quitGame' to quit playing.";
-//			emotion++;
-//		}
-//		else if (findKeyword(statement, "Hit")>=0)
-//		{
-//			response = getRandomCard();
-//		}
-//		else if (findKeyword(statement, "Stay")>=0)
-//		{
-//			response = "Dealer's Cards: " + getRandomCard() + " / " + getRandomCard() + "total=" + z;
-//		}
-//	}
 	private String transformIWantToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -231,6 +193,12 @@ public class ChatBotKim
 		}
 		return -1;
 	}
+	private String website1() throws Exception
+	{
+		Desktop desktop=Desktop.getDesktop();
+		desktop.browse(new URI("https://www.centeronaddiction.org/"));
+		return "Opening requested website...";
+	}
 	private int findKeyword(String statement, String goal)
 	{
 		return findKeyword (statement, goal, 0);
@@ -257,13 +225,6 @@ public class ChatBotKim
 		Random r = new Random ();
 		{
 		return getRandomGameOutcome [r.nextInt(getRandomGameOutcome.length)];
-		}
-	}
-	private String getRandomCard ()
-	{
-		Random r = new Random ();
-		{
-		return getRandomCard [r.nextInt(getRandomCard.length)];
 		}
 	}
 	private String getRandomSuggestions ()
@@ -312,21 +273,5 @@ public class ChatBotKim
 			"paper!!!",
 			"rock!!!",
 			"scissor!!!",
-		};
-	private String [] getRandomCard =
-		{
-			"A", "A", "A", "A",
-			"2", "2", "2", "2",
-			"3", "3", "3", "3",
-			"4", "4", "4", "4",
-			"5", "5", "5", "5",
-			"6", "6", "6", "6",
-			"7", "7", "7", "7",
-			"8", "8", "8", "8",
-			"9", "9", "9", "9",
-			"10", "10", "10", "10",
-			"J", "J", "J", "J",
-			"Q", "Q", "Q", "Q",
-			"K", "K", "K", "K",
 		};
 }
