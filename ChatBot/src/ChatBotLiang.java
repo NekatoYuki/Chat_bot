@@ -46,7 +46,7 @@ public class ChatBotLiang
 		}
 		
 		//Will give a random fact from the facts list.
-		else if (findKeyword(statement, "AFact") >= 0)
+		else if (findKeyword(statement, "afact") >= 0)
 		{
 			response = getRandomFactResponses();
 		}
@@ -133,6 +133,14 @@ public class ChatBotLiang
 		{
 			response = transformIWillNotStatement(statement);
 		}
+		else if (findKeyword (statement, "I do not",0) >= 0)
+		{
+			response = transformIDoNotStatement(statement);
+		}
+		else if (findKeyword (statement, "I do",0) >= 0)
+		{
+			response = transformIDoStatement(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -208,7 +216,7 @@ public class ChatBotLiang
 	 * This will take a statement with "I think <something>" and transforms it into
 	 * "Why do you think <something>?"
 	 * @param statement the user statement, assumed to contain "I think" followed by something
-	 * @return
+	 * @return the transformed statement
 	 */
 	private String transformIThinkThatStatement(String statement)
 	{
@@ -231,7 +239,7 @@ public class ChatBotLiang
 	 * This will take a statement with "I will <something>" and transform it into a
 	 * "Why will you <something>?"
 	 * @param statement the user statement, assumed to contain "I will" followed by something
-	 * @return
+	 * @return the transformed statement
 	 */
 	private String transformIWillStatement(String statement)
 	{
@@ -253,7 +261,7 @@ public class ChatBotLiang
 	 * This will take a statement with "I will not <something>" and transform it into a
 	 * "Why will you not <something>?"
 	 * @param statement the user statement, assumed to contain "I will not" followed by something
-	 * @return
+	 * @return the transformed statement
 	 */
 	private String transformIWillNotStatement(String statement)
 	{
@@ -270,6 +278,51 @@ public class ChatBotLiang
 		
 		String restOfStatement = statement.substring(psnOfNot + 1, statement.length()).trim();
 		return "Why will you not " + restOfStatement + "?";
+	}
+	
+	/**
+	 * This will take a statement with "I do not <something>" and transform it into a
+	 * "Why do you not <something>?"
+	 * @param statement the user statement, assumed to contain "I do not" followed by something
+	 * @return the transformed statement
+	 */
+	private String transformIDoNotStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfDo = findKeyword (statement, "do", psnOfI);
+		int psnOfNot = findKeyword (statement, "not", psnOfDo);
+		
+		String restOfStatement = statement.substring(psnOfNot + 1, statement.length()).trim();
+		return "Why do you not " + restOfStatement + "?";
+	}
+	
+	/**
+	 * This will take a statement with "I do <something>" and transform it into a
+	 * "Why do you <something>?"
+	 * @param statement the user statement, assumed to contain "I do" followed by something
+	 * @return the transformed statement
+	 */
+	private String transformIDoStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfDo = findKeyword (statement, "do", psnOfI);
+		
+		String restOfStatement = statement.substring(psnOfDo + 1, statement.length()).trim();
+		return "Why do you " + restOfStatement + "?";
 	}
 
 	
