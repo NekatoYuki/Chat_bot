@@ -123,7 +123,14 @@ public class ChatBotKim
 		{
 			response = website1();
 		}
-		else if (findKeyword(statement, "I want to"
+		else if (findKeyword(statement, "I want to", 0)>=0)
+		{
+			response = transformIWantToStatement(statement);
+		}
+		else if (findKeyword(statement, "Can you", 0)>=0)
+		{
+			respones = transformCanYouStatement(statement);
+		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
 			System.out.println("Enjoy your day and stay safe from drug!!! ^-^");
