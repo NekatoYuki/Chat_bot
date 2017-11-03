@@ -13,7 +13,7 @@ public class ChatBotWu
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-	
+
 	 
 	public String getGreeting()
 	{
@@ -21,9 +21,9 @@ public class ChatBotWu
 		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
 		System.out.println("Enter bye to return back to menu.");
-		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Tell me what you need help with so I can listen to you, or you can take a short quiz to test your knowledge, or get facts/advice/resources.";
-	}
-	//input method
+		return getRandomGreeting() + " " + "Welcome to the Drug abuse chat! Talk to me or type 'options' for more options!";
+	} 
+	//input method 
 	Scanner input = new Scanner(System.in);
 	
 	//chatbot responses for certain keywords
@@ -53,15 +53,22 @@ public class ChatBotWu
 		else if (findKeyword(statement, "yes") >= 0
 				||(findKeyword(statement, "friend") >= 0))
 		{
-			response = "Tell me more, I'm listening";
+			response = "Tell me more, I'm listening.";
 				
 		}
 		
 		else if (findKeyword(statement, "bored") >= 0
 				||(findKeyword(statement, "boring") >= 0))
 		{
-			response = "Want to test your knowledge? respond with 'quiz'. Want some advice? Respond with 'advice'. What some facts? Respons with 'fact'.";
+			response = "You're bored? Type keyword 'option' to see what else I have to offer!";
 				
+		}
+		
+		else if (findKeyword(statement, "joke") >= 0 
+				|| findKeyword(statement, "tell me a joke") >= 0 )
+		{
+			response = "Here's a joke:" + " " + getRandomJoke();
+                	emotion++;
 		}
 		
 		else if (findKeyword(statement, "advice") >= 0 )
@@ -69,7 +76,6 @@ public class ChatBotWu
 			response = "Here's an advice:" + " " + getRandomAdvice();
                 	emotion++;
 		}
-		
 
 		else if (findKeyword(statement, "fact") >= 0||
 		(findKeyword(statement, "facts") >= 0))
@@ -78,6 +84,12 @@ public class ChatBotWu
 	                  emotion++;
 	    }
 		
+		else if (findKeyword(statement, "option") >= 0||
+				(findKeyword(statement, "options") >= 0))
+				{
+					response = "Get advice - keyword 'advice'."+ "\n"+ "Get facts - keyword 'fact'." + "\n"+ "Test your knowledge - keyword 'quiz'." 
+								+ "\n"+ "Cheer up with a joke - keyword 'joke'.";
+			    }
 		
 		//Quiz (true/false; everything is true)
 		else if (findKeyword(statement, "question") >= 0||
@@ -85,7 +97,7 @@ public class ChatBotWu
 				findKeyword(statement, "knowledge") >= 0 ||
 				findKeyword(statement, "quiz") >= 0)
 		{
-			response = "Test your knowledge in this true/false quiz! See if you can get these questions correct! To start respond with quizYes, to exit, respond with quizNo.";
+			response = "Test your knowledge in this true/false quiz!" +"\n" + "To start respond with quizYes, to exit, respond with quizNo.";
 		}
 		//user select yes
 		else if (findKeyword(statement, "quizyes") >= 0)
@@ -202,7 +214,7 @@ public class ChatBotWu
 		String restOfStatement = statement.substring(psn + 16).trim();
 		return "Yes! I can definitely help you with" + " " + restOfStatement +"."+ " " + "Tell me more or ask for some of my advice.";
 	}
-
+ 
 	private String transformHelp2(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -257,7 +269,7 @@ public class ChatBotWu
 	{
 		 Desktop desktop=Desktop.getDesktop();
 			desktop.browse(new URI("https://www.google.com/search?q=drug+abuse&oq=drug+abuse"));
-			return "Loading browser...";	
+			return "Loading browser..."+ "\n"+ "Loading site...";	
 	}
 	
 	
@@ -356,7 +368,15 @@ public class ChatBotWu
 			return trueResponses [r.nextInt(trueResponses.length)];
 		}
 	}
-
+	//Gets a joke
+	private String getRandomJoke()
+	{
+		Random r = new Random ();
+		{	
+			return randomJoke [r.nextInt(randomJoke.length)];
+		}
+	
+	}
 	//Gets a random greeting
 		private String getRandomGreeting ()
 		{
@@ -387,7 +407,6 @@ public class ChatBotWu
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
 	
-	
 	//Array values/strings for random responses
 	private String [] randomNeutralResponses = {"Tell me more...",
 			"Hmmm.",
@@ -398,9 +417,8 @@ public class ChatBotWu
 			"Can you repeat that again?",
 			"Do you need advice? Respond with 'advice'.",
 			"Want a fact? Respond with 'fact'.",
-			"Want to test your knowledge? Respond with 'quiz'."    
-	};
-	
+			"Want to test your knowledge? Respond with 'quiz'.",
+	};    
 	private String [] randomAngryResponses = {"...", "Hmph", ">:(", ":("};
 	private String [] randomHappyResponses = {"Great!", "Fantastic!", "Ok!", "Nice!", ":D", ":)"};
 	private String [] randomFact = {"A hotline that you can call is 1-800-662-HELP.", 
@@ -427,4 +445,9 @@ public class ChatBotWu
 	private String [] falseResponses = {"D'oh!", "Stumped?", "Ouch.", "False :("};
 	private String [] trueResponses = {"Correct!", "Wow!", "Excellent!"};
 	private String [] randomGreeting = {"G'day mate!", "Hello!", "What's up!", "Howdy!", "Sup!"};
+	private String [] randomJoke = {"Cocaine is never a solution. Unless you dissolve it in water, of course.",
+									"I saw a driver texting and driving. It made me so mad I threw my beer at him.",
+									"Thanks to autocorrect, 1 in 5 children will be getting a visit from Satan this Christmas.",
+									"Autocorrect has become my worst enema.",
+									"Can a kangaroo jump higher than a house? Of course, a house doesn’t jump at all."};
 	}
