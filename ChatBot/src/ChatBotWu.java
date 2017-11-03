@@ -17,7 +17,7 @@ public class ChatBotWu
 	 
 	public String getGreeting()
 	{
-		//info and intro section of the chatbot
+		//info and introduction section of the chatbot
 		System.out.println("\n");
 		System.out.println("DRUG ABUSE CHAT");
 		System.out.println("Enter bye to return back to menu.");
@@ -57,21 +57,40 @@ public class ChatBotWu
 				
 		}
 		
+		else if (findKeyword(statement, "bored") >= 0
+				||(findKeyword(statement, "boring") >= 0))
+		{
+			response = "Want to test your knowledge? respond with 'quiz'. Want some advice? Respond with 'advice'. What some facts? Respons with 'fact'.";
+				
+		}
 		
-		//Quiz
+		else if (findKeyword(statement, "advice") >= 0 )
+		{
+			response = "Here's an advice:" + " " + getRandomAdvice();
+                	emotion++;
+		}
+		
+
+		else if (findKeyword(statement, "fact") >= 0||
+		(findKeyword(statement, "facts") >= 0))
+		{
+			response = "Here's a fact:" + " " + getRandomFact();
+	                  emotion++;
+	    }
+		
+		
+		//Quiz (true/false; everything is true)
 		else if (findKeyword(statement, "question") >= 0||
 				findKeyword(statement, "test") >= 0 ||
 				findKeyword(statement, "knowledge") >= 0 ||
 				findKeyword(statement, "quiz") >= 0)
 		{
-			response = "Test your knowledge! See if you can get these questions correct! To start respond with quizYes, to exit, respond with quizNo.";
-                	emotion++;
+			response = "Test your knowledge in this true/false quiz! See if you can get these questions correct! To start respond with quizYes, to exit, respond with quizNo.";
 		}
 		//user select yes
 		else if (findKeyword(statement, "quizyes") >= 0)
 		{
 			response = "Are you ready? Respond with ready or notReady.";
-                	emotion++;
 		}
 		//user ready 
 		else if (findKeyword(statement, "ready") >= 0)
@@ -102,26 +121,11 @@ public class ChatBotWu
                 	emotion--;
 		}
 		
-		
-		//more chatbot responses 
-		else if (findKeyword(statement, "advice") >= 0 )
-		{
-			response = "Here's an advice:" + " " + getRandomAdvice();
-                	emotion++;
-		}
-		
-
-		else if (findKeyword(statement, "fact") >= 0||
-		(findKeyword(statement, "facts") >= 0))
-		{
-			response = "Here's a fact:" + " " + getRandomFact();
-			
-	                  emotion++;
-	    }
-		
-		//searches web for online resources
+		//searches web for online resources using method searchWeb
 		else if (findKeyword(statement, "search") >= 0
 				||findKeyword(statement, "resource") >= 0
+				||findKeyword(statement, "look up") >= 0
+				||findKeyword(statement, "google") >= 0
 				||findKeyword(statement, "resources") >= 0)
 		{
 			response = "Do you want me to link you to search results for drug abuse resources? Respond with searchYes.";
@@ -131,17 +135,18 @@ public class ChatBotWu
 			response = searchWeb();
 		}
 		
-	
+		//more keyword responses
 		else if (findKeyword(statement, "heroin") >=0 
 				|| findKeyword(statement, "marijuana") >= 0 
 				|| findKeyword(statement, "cocaine") >=0 
 				|| findKeyword(statement, "crack") >=0 
 				|| findKeyword(statement, "vape") >=0 
+				|| findKeyword(statement, "drug abuse") >=0 
 				|| findKeyword(statement, "weed") >=0 
 				|| findKeyword(statement, "vaping") >=0 
 				|| findKeyword(statement, "smoking") >=0)
 		{
-			response = "This sounds interesting! Tell me some more details.";
+			response = "Sounds interesting. Tell me some more details.";
 		}
 		
 		//used for if user enters bye which returns them back to menu screen
@@ -153,7 +158,7 @@ public class ChatBotWu
 		}
 
 
-		// Response transforming I want to style statements
+		//Response of transforming "I want to" style statements
 		else if (findKeyword(statement, "I need to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
@@ -414,8 +419,10 @@ public class ChatBotWu
 									"Don't hang with friends who use drugs.",
 									"Avoid being a statistic, seek help today!"};
 	private String [] randomQuestion = {"27 million Americans abuse drugs.", 
-			"Drug abuse cause over 300,000 deaths each year.", 
+			"Drug abuse cause over 300,000 deaths each year in the United States.", 
 			"Drug abuse can change your brain chemistry.",
+			"Drugs abuse caused over 307,400 deaths in 2015.",
+			"Over $190 billion goes towards drug abuse.",
 			"Tobacco is the most abused drug.",
 			"Drug abuse can have an effect on one's physical health, mental health, and overall well-being."};
 	private String [] falseResponses = {"D'oh!", "Stumped?", "Ouch.", "False :("};
