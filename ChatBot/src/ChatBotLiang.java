@@ -41,7 +41,7 @@ public class ChatBotLiang
 		
 		else if (findKeyword(statement, "Yes") >= 0)
 		{
-			response = "Please type AFact for a drug awareness fact.";
+			response = "Please type afact for a drug awareness fact.";
 			emotion++;
 		}
 		
@@ -186,7 +186,7 @@ public class ChatBotLiang
 		}
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		return "Do you really want " + restOfStatement + "?";
 	}
 	
 	
@@ -236,28 +236,6 @@ public class ChatBotLiang
 	}
 	
 	/**
-	 * This will take a statement with "I will <something>" and transform it into a
-	 * "Why will you <something>?"
-	 * @param statement the user statement, assumed to contain "I will" followed by something
-	 * @return the transformed statement
-	 */
-	private String transformIWillStatement(String statement)
-	{
-		statement = statement.trim();
-		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement.length() - 1);
-		}
-		
-		int psnOfI = findKeyword (statement, "I", 0);
-		int psnOfWill = findKeyword (statement, "will", psnOfI);
-		
-		String restOfStatement = statement.substring(psnOfWill + 1, statement.length()).trim();
-		return "Why will you " + restOfStatement + "?";
-	}
-	
-	/**
 	 * This will take a statement with "I will not <something>" and transform it into a
 	 * "Why will you not <something>?"
 	 * @param statement the user statement, assumed to contain "I will not" followed by something
@@ -276,8 +254,31 @@ public class ChatBotLiang
 		int psnOfWill = findKeyword (statement, "will", psnOfI);
 		int psnOfNot = findKeyword (statement, "not", psnOfWill);
 		
-		String restOfStatement = statement.substring(psnOfNot + 1, statement.length()).trim();
+		String restOfStatement = statement.substring(psnOfNot + 4, statement.length()).trim();
 		return "Why will you not " + restOfStatement + "?";
+	}
+	
+	
+	/**
+	 * This will take a statement with "I will <something>" and transform it into a
+	 * "Why will you <something>?"
+	 * @param statement the user statement, assumed to contain "I will" followed by something
+	 * @return the transformed statement
+	 */
+	private String transformIWillStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfWill = findKeyword (statement, "will", psnOfI);
+		
+		String restOfStatement = statement.substring(psnOfWill + 4, statement.length()).trim();
+		return "Why will you " + restOfStatement + "?";
 	}
 	
 	/**
@@ -299,7 +300,7 @@ public class ChatBotLiang
 		int psnOfDo = findKeyword (statement, "do", psnOfI);
 		int psnOfNot = findKeyword (statement, "not", psnOfDo);
 		
-		String restOfStatement = statement.substring(psnOfNot + 1, statement.length()).trim();
+		String restOfStatement = statement.substring(psnOfNot + 3, statement.length()).trim();
 		return "Why do you not " + restOfStatement + "?";
 	}
 	
@@ -458,6 +459,7 @@ public class ChatBotLiang
 		}
 	}
 	
+	//Random responses from the chat bot depending on what the user says
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Hmmm, is there more?",
 			"Do you really think so?"
