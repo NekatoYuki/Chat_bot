@@ -88,7 +88,7 @@ public class ChatBotWu
 				(findKeyword(statement, "options") >= 0))
 				{
 					response = "Get advice - keyword 'advice'."+ "\n"+ "Get facts - keyword 'fact'." + "\n"+ "Test your knowledge - keyword 'quiz'." 
-								+ "\n"+ "Cheer up with a joke - keyword 'joke'.";
+								+ "\n"+ "Cheer up with a joke - keyword 'joke'."+ "\n"+ "Find more resources - keyword 'search'.";
 			    }
 		
 		//Quiz (true/false; everything is true)
@@ -97,12 +97,12 @@ public class ChatBotWu
 				findKeyword(statement, "knowledge") >= 0 ||
 				findKeyword(statement, "quiz") >= 0)
 		{
-			response = "Test your knowledge in this true/false quiz!" +"\n" + "To start respond with quizYes, to exit, respond with quizNo.";
+			response = "Test your knowledge in this true/false quiz!" +"\n" + "To start respond with 'quizYes', to exit, respond with 'quizNo'.";
 		}
 		//user select yes
 		else if (findKeyword(statement, "quizyes") >= 0)
 		{
-			response = "Are you ready? Respond with ready or notReady.";
+			response = "Are you ready? Respond with 'ready' or 'notReady'.";
 		}
 		//user ready 
 		else if (findKeyword(statement, "ready") >= 0)
@@ -112,12 +112,12 @@ public class ChatBotWu
 		//chatbot's true responses
 		else if (findKeyword(statement, "true") >= 0)
 		{
-			response = trueResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit.";
+			response = trueResponses() + " " + "Ready for another question? Or do you want to quit? Respond with 'ready' or 'exit'.";
 		}
 		//chatbot's false responses
 		else if (findKeyword(statement, "false") >= 0)
 		{
-			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with ready or exit.";
+			response = falseResponses() + " " + "Ready for another question? Or do you want to quit? Respond with 'ready' or 'exit'.";
 		}
 		//user responds with not ready for quiz
 		else if (findKeyword(statement, "notready") >= 0)
@@ -140,7 +140,7 @@ public class ChatBotWu
 				||findKeyword(statement, "google") >= 0
 				||findKeyword(statement, "resources") >= 0)
 		{
-			response = "Do you want me to link you to search results for drug abuse resources? Respond with searchYes.";
+			response = "Do you want me to link you to search results for drug abuse resources? Respond with 'searchYes', to exit, respind with 'exit'.";
 		}
 		else if (findKeyword(statement, "searchyes") >= 0)
 		{
