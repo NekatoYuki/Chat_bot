@@ -129,7 +129,7 @@ public class ChatBotKim
 		}
 		else if (findKeyword(statement, "Can you", 0)>=0)
 		{
-			respones = transformCanYouStatement(statement);
+			response = transformCanYouStatement(statement);
 		}
 		else if (findKeyword(statement, "Bye") >= 0)
 		{
